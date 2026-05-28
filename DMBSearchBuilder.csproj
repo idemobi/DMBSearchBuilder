@@ -3,10 +3,9 @@
         <RootNamespace>DMBSearchBuilder</RootNamespace>
         <Title>DMBSearchBuilder</Title>
         <PackageTags>idemobi Search Builder</PackageTags>
-        <Description>Search indexing package that crawls web and documentation pages into SQLite search databases.</Description>
+        <Description>DMBSearchBuilder</Description>
         <PackageReleaseNotes>note</PackageReleaseNotes>
         <AssemblyOriginatorKeyFile>DMBSearchBuilder.snk</AssemblyOriginatorKeyFile>
-        <PackageIcon>DMBSearchBuilder.png</PackageIcon>
         <PackageId>DMBSearchBuilder</PackageId>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
@@ -26,9 +25,9 @@
         <Version>0.12.0</Version>
         <FileVersion>0.12.0.0</FileVersion>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
-        <Company>idéMobi</Company>
-        <Authors>Jean-François CONTART, Quentin BOULOGNE, Camille GOLLIOT</Authors>
-        <Copyright>Copyright © $(Company) $([System.DateTime]::UtcNow.ToString("yyyy"))</Copyright>
+        <Company>ideMobi</Company>
+        <Authors>Jean-Francois CONTART and Quentin BOULOGNE</Authors>
+        <Copyright>Copyright (c) $(Company) $([System.DateTime]::UtcNow.ToString("yyyy"))</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <PackageProjectUrl>https://dev.azure.com/Game-Data-Forge/Game-Data-Forge</PackageProjectUrl>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
@@ -38,7 +37,7 @@
         <GenerateAssemblyMetadataAttribute>true</GenerateAssemblyMetadataAttribute>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <DefineConstants/>
+        <DefineConstants />
         <DocumentationFile>bin\Release\net10.0\DMBSearchBuilder.xml</DocumentationFile>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -52,22 +51,21 @@
     <Choose>
         <When Condition=" '$(Configuration)' == 'NuGet' ">
             <ItemGroup Label="Case NuGet">
-                <PackageReference Include="DMBSearchCore" Version="0.12.0"/>
+                <PackageReference Include="DMBSearchCore" Version="0.12.0" />
             </ItemGroup>
         </When>
         <Otherwise>
             <ItemGroup Label="Case Debug, Release, Deployment">
-                <ProjectReference Include="..\DMBSearchCore\DMBSearchCore.csproj"/>
+                <ProjectReference Include="..\DMBSearchCore\DMBSearchCore.csproj" />
             </ItemGroup>
         </Otherwise>
     </Choose>
     <ItemGroup Label="Import package">
-        <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.7" />
+        <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.8" />
     </ItemGroup>
     <ItemGroup Label="Files in package">
         <None Include="README.md" Pack="true" PackagePath="\" />
         <None Include="LICENSE.md" Pack="true" PackagePath="\" />
-        <None Include="DMBSearchBuilder.png" Pack="true" PackagePath="\" />
     </ItemGroup>
     <ItemGroup Label="Localization">
         <Compile Update="Resources\DMBSearchBuilderDataAnnotationLocalization.cs">
