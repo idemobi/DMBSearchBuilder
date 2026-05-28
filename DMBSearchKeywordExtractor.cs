@@ -61,7 +61,8 @@ namespace DMBSearchBuilder
         /// <returns>A space-separated keyword string.</returns>
         public static string ExtractKeywordsAsString(string content)
         {
-            return string.Join(' ', DMBSearchTextNormalizer.ExtractSearchTokens(WebUtility.HtmlDecode(content)).Take(250));
+            string decodedContent = WebUtility.HtmlDecode(content) ?? string.Empty;
+            return string.Join(' ', DMBSearchTextNormalizer.ExtractSearchTokens(decodedContent).Take(250));
         }
 
         private static string ExtractVisibleText(string html)
@@ -121,7 +122,8 @@ namespace DMBSearchBuilder
 
         private static Dictionary<string, int> CountTokenOccurrences(string content)
         {
-            string normalized = DMBSearchTextNormalizer.NormalizeSearchText(WebUtility.HtmlDecode(content));
+            string decodedContent = WebUtility.HtmlDecode(content) ?? string.Empty;
+            string normalized = DMBSearchTextNormalizer.NormalizeSearchText(decodedContent);
             Dictionary<string, int> occurrences = new(StringComparer.Ordinal);
 
             foreach (Match match in SearchTokenRegex.Matches(normalized))
@@ -134,7 +136,8 @@ namespace DMBSearchBuilder
 
         private static string NormalizeText(string value)
         {
-            return WhitespaceRegex.Replace(WebUtility.HtmlDecode(value), " ").Trim();
+            string decodedValue = WebUtility.HtmlDecode(value) ?? string.Empty;
+            return WhitespaceRegex.Replace(decodedValue, " ").Trim();
         }
 
         private static string ReadFirstGroup(Regex regex, string input)

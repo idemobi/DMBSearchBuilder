@@ -171,7 +171,7 @@ namespace DMBSearchBuilder
         {
             foreach (Match match in LinkRegex.Matches(html))
             {
-                string rawHref = WebUtility.HtmlDecode(match.Groups[1].Value);
+                string rawHref = WebUtility.HtmlDecode(match.Groups[1].Value) ?? string.Empty;
 
                 if (string.IsNullOrWhiteSpace(rawHref))
                 {
