@@ -3,9 +3,10 @@
         <RootNamespace>DMBSearchBuilder</RootNamespace>
         <Title>DMBSearchBuilder</Title>
         <PackageTags>idemobi Search Builder</PackageTags>
-        <Description>DMBSearchBuilder</Description>
+        <Description>Search indexing package that crawls web and documentation pages into SQLite search databases.</Description>
         <PackageReleaseNotes>note</PackageReleaseNotes>
         <AssemblyOriginatorKeyFile>DMBSearchBuilder.snk</AssemblyOriginatorKeyFile>
+        <PackageIcon>DMBSearchBuilder.png</PackageIcon>
         <PackageId>DMBSearchBuilder</PackageId>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
@@ -25,9 +26,9 @@
         <Version>0.12.0</Version>
         <FileVersion>0.12.0.0</FileVersion>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
-        <Company>ideMobi</Company>
-        <Authors>Jean-Francois CONTART and Quentin BOULOGNE</Authors>
-        <Copyright>Copyright (c) $(Company) $([System.DateTime]::UtcNow.ToString("yyyy"))</Copyright>
+        <Company>idéMobi</Company>
+        <Authors>Jean-François CONTART, Quentin BOULOGNE, Camille GOLLIOT</Authors>
+        <Copyright>Copyright © $(Company) $([System.DateTime]::UtcNow.ToString("yyyy"))</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <PackageProjectUrl>https://dev.azure.com/Game-Data-Forge/Game-Data-Forge</PackageProjectUrl>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
@@ -66,6 +67,7 @@
     <ItemGroup Label="Files in package">
         <None Include="README.md" Pack="true" PackagePath="\" />
         <None Include="LICENSE.md" Pack="true" PackagePath="\" />
+        <None Include="DMBSearchBuilder.png" Pack="true" PackagePath="\" />
     </ItemGroup>
     <ItemGroup Label="Localization">
         <Compile Update="Resources\DMBSearchBuilderDataAnnotationLocalization.cs">
