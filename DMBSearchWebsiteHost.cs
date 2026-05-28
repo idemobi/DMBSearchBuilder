@@ -20,7 +20,8 @@ namespace DMBSearchBuilder
             string launchSettingsPath,
             string preferredLaunchProfile,
             string? fallbackLaunchProfile,
-            TimeSpan startupTimeout)
+            TimeSpan startupTimeout,
+            bool useNoBuild)
         {
             DMBSearchLaunchProfile launchProfile = LoadLaunchProfile(
                 launchSettingsPath,
@@ -34,9 +35,10 @@ namespace DMBSearchBuilder
             }
 
             Console.WriteLine($"[DMBSearchBuilder] Website unavailable at {launchProfile.BaseUri}");
-            Console.WriteLine($"[DMBSearchBuilder] Starting {Path.GetFileName(projectPath)} with launch profile '{launchProfile.Name}' and --no-build.");
+            string buildMode = useNoBuild ? " and --no-build" : string.Empty;
+            Console.WriteLine($"[DMBSearchBuilder] Starting {Path.GetFileName(projectPath)} with launch profile '{launchProfile.Name}'{buildMode}.");
 
-            Process process = StartWebsite(projectPath, launchProfile.Name);
+            Process process = StartWebsite(projectPath, launchProfile.Name, useNoBuild);
             try
             {
                 await WaitUntilAvailableAsync(launchProfile.BaseUri, startupTimeout, process).ConfigureAwait(false);
@@ -66,7 +68,7 @@ namespace DMBSearchBuilder
             _process.Dispose();
         }
 
-        private static Process StartWebsite(string projectPath, string launchProfile)
+        private static Process StartWebsite(string projectPath, string launchProfile, bool useNoBuild)
         {
             ProcessStartInfo processStartInfo = new()
             {
@@ -80,7 +82,10 @@ namespace DMBSearchBuilder
             processStartInfo.ArgumentList.Add(projectPath);
             processStartInfo.ArgumentList.Add("--launch-profile");
             processStartInfo.ArgumentList.Add(launchProfile);
-            processStartInfo.ArgumentList.Add("--no-build");
+            if (useNoBuild)
+            {
+                processStartInfo.ArgumentList.Add("--no-build");
+            }
 
             Process? process = Process.Start(processStartInfo);
             if (process == null)

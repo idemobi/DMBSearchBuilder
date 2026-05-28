@@ -48,6 +48,15 @@ namespace DMBSearchBuilder
         public TimeSpan StartupTimeout { get; set; } = TimeSpan.FromSeconds(90);
 
         /// <summary>
+        /// Gets or sets a value indicating whether <c>dotnet run</c> should skip building the website project.
+        /// </summary>
+        /// <remarks>
+        /// Keep this value set to <see langword="true"/> when the website project is already built by the caller.
+        /// Set it to <see langword="false"/> when the prebuilding flow must tolerate a missing or stale output executable.
+        /// </remarks>
+        public bool UseNoBuild { get; set; } = true;
+
+        /// <summary>
         /// Gets the path prefixes ignored by the crawler.
         /// </summary>
         public List<string> ExcludedPathPrefixes { get; } = ["/Documentation", "/Search"];

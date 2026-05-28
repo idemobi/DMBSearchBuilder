@@ -143,7 +143,8 @@ namespace DMBSearchBuilder
                 options.LaunchSettingsPath,
                 options.LaunchProfileName,
                 options.FallbackLaunchProfileName,
-                options.StartupTimeout).ConfigureAwait(false);
+                options.StartupTimeout,
+                options.UseNoBuild).ConfigureAwait(false);
 
             DMBSearchBuildOptions buildOptions = new()
             {
