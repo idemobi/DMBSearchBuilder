@@ -2,7 +2,7 @@
     <PropertyGroup>
         <RootNamespace>DMBSearchBuilder</RootNamespace>
         <Title>DMBSearchBuilder</Title>
-        <PackageTags>idemobi Search Builder</PackageTags>
+        <PackageTags>idemobi DMB Search Builder Crawler Indexing SQLite Keywords Prebuild</PackageTags>
         <Description>Search indexing package that crawls web and documentation pages into SQLite search databases.</Description>
         <PackageReleaseNotes>note</PackageReleaseNotes>
         <AssemblyOriginatorKeyFile>DMBSearchBuilder.snk</AssemblyOriginatorKeyFile>
