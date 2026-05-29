@@ -77,4 +77,7 @@
             <DependentUpon>DMBSearchBuilderInternalLocalization.resx</DependentUpon>
         </Compile>
     </ItemGroup>
+    <ItemGroup Label="Project file exclusions">
+        <None Remove=".gitignore" />
+    </ItemGroup>
 </Project>
