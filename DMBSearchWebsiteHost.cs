@@ -1,19 +1,22 @@
+#region Copyright
+
+// ©2002-2026 idéMobi
+// www.idemobi.com
+
+#endregion
+
+#region
+
 using System.Diagnostics;
 using System.Text.Json;
+
+#endregion
 
 namespace DMBSearchBuilder
 {
     internal sealed class DMBSearchWebsiteHost : IDisposable
     {
-        private readonly Process? _process;
-
-        private DMBSearchWebsiteHost(Uri baseUri, Process? process)
-        {
-            BaseUri = baseUri;
-            _process = process;
-        }
-
-        internal Uri BaseUri { get; }
+        #region Static methods
 
         internal static async Task<DMBSearchWebsiteHost> EnsureAvailableAsync(
             string projectPath,
@@ -21,7 +24,8 @@ namespace DMBSearchBuilder
             string preferredLaunchProfile,
             string? fallbackLaunchProfile,
             TimeSpan startupTimeout,
-            bool useNoBuild)
+            bool useNoBuild
+        )
         {
             DMBSearchLaunchProfile launchProfile = LoadLaunchProfile(
                 launchSettingsPath,
@@ -51,70 +55,6 @@ namespace DMBSearchBuilder
                 process.Dispose();
                 throw;
             }
-        }
-
-        /// <summary>
-        /// Stops the temporary website process when this host started one.
-        /// </summary>
-        public void Dispose()
-        {
-            if (_process == null)
-            {
-                return;
-            }
-
-            Console.WriteLine("[DMBSearchBuilder] Stopping temporary website process.");
-            StopProcess(_process);
-            _process.Dispose();
-        }
-
-        private static Process StartWebsite(string projectPath, string launchProfile, bool useNoBuild)
-        {
-            ProcessStartInfo processStartInfo = new()
-            {
-                FileName = "dotnet",
-                WorkingDirectory = Path.GetDirectoryName(projectPath) ?? AppContext.BaseDirectory,
-                UseShellExecute = false
-            };
-
-            processStartInfo.ArgumentList.Add("run");
-            processStartInfo.ArgumentList.Add("--project");
-            processStartInfo.ArgumentList.Add(projectPath);
-            processStartInfo.ArgumentList.Add("--launch-profile");
-            processStartInfo.ArgumentList.Add(launchProfile);
-            if (useNoBuild)
-            {
-                processStartInfo.ArgumentList.Add("--no-build");
-            }
-
-            Process? process = Process.Start(processStartInfo);
-            if (process == null)
-            {
-                throw new InvalidOperationException("Unable to start the website process.");
-            }
-
-            return process;
-        }
-
-        private static async Task WaitUntilAvailableAsync(Uri baseUri, TimeSpan timeout, Process process)
-        {
-            DateTimeOffset deadline = DateTimeOffset.UtcNow.Add(timeout);
-            while (DateTimeOffset.UtcNow < deadline)
-            {
-                if (process.HasExited)
-                {
-                    throw new InvalidOperationException($"The website process exited before {baseUri} became available.");
-                }
-
-                if (await IsAvailableAsync(baseUri).ConfigureAwait(false))
-                {
-                    return;
-                }
-
-                await Task.Delay(TimeSpan.FromSeconds(1)).ConfigureAwait(false);
-            }
-
-            throw new TimeoutException($"The website did not become available at {baseUri} before the timeout.");
         }
 
         private static async Task<bool> IsAvailableAsync(Uri baseUri)
@@ -148,7 +88,8 @@ namespace DMBSearchBuilder
         private static DMBSearchLaunchProfile LoadLaunchProfile(
             string launchSettingsPath,
             string preferredLaunchProfile,
-            string? fallbackLaunchProfile)
+            string? fallbackLaunchProfile
+        )
         {
             using FileStream stream = File.OpenRead(launchSettingsPath);
             using JsonDocument document = JsonDocument.Parse(stream);
@@ -179,7 +120,7 @@ namespace DMBSearchBuilder
                 .Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
             string? selectedUrl = urls.FirstOrDefault(url => url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
-                ?? urls.FirstOrDefault();
+                                  ?? urls.FirstOrDefault();
 
             if (string.IsNullOrWhiteSpace(selectedUrl))
             {
@@ -187,6 +128,34 @@ namespace DMBSearchBuilder
             }
 
             return new Uri(selectedUrl.EndsWith("/", StringComparison.Ordinal) ? selectedUrl : selectedUrl + "/");
+        }
+
+        private static Process StartWebsite(string projectPath, string launchProfile, bool useNoBuild)
+        {
+            ProcessStartInfo processStartInfo = new()
+            {
+                FileName = "dotnet",
+                WorkingDirectory = Path.GetDirectoryName(projectPath) ?? AppContext.BaseDirectory,
+                UseShellExecute = false
+            };
+
+            processStartInfo.ArgumentList.Add("run");
+            processStartInfo.ArgumentList.Add("--project");
+            processStartInfo.ArgumentList.Add(projectPath);
+            processStartInfo.ArgumentList.Add("--launch-profile");
+            processStartInfo.ArgumentList.Add(launchProfile);
+            if (useNoBuild)
+            {
+                processStartInfo.ArgumentList.Add("--no-build");
+            }
+
+            Process? process = Process.Start(processStartInfo);
+            if (process == null)
+            {
+                throw new InvalidOperationException("Unable to start the website process.");
+            }
+
+            return process;
         }
 
         private static void StopProcess(Process process)
@@ -199,6 +168,70 @@ namespace DMBSearchBuilder
             process.Kill(entireProcessTree: true);
             process.WaitForExit(TimeSpan.FromSeconds(10));
         }
+
+        private static async Task WaitUntilAvailableAsync(Uri baseUri, TimeSpan timeout, Process process)
+        {
+            DateTimeOffset deadline = DateTimeOffset.UtcNow.Add(timeout);
+            while (DateTimeOffset.UtcNow < deadline)
+            {
+                if (process.HasExited)
+                {
+                    throw new InvalidOperationException($"The website process exited before {baseUri} became available.");
+                }
+
+                if (await IsAvailableAsync(baseUri).ConfigureAwait(false))
+                {
+                    return;
+                }
+
+                await Task.Delay(TimeSpan.FromSeconds(1)).ConfigureAwait(false);
+            }
+
+            throw new TimeoutException($"The website did not become available at {baseUri} before the timeout.");
+        }
+
+        #endregion
+
+        #region Instance fields and properties
+
+        private readonly Process? _process;
+
+        internal Uri BaseUri { get; }
+
+        #endregion
+
+        #region Instance constructors and destructors
+
+        private DMBSearchWebsiteHost(Uri baseUri, Process? process)
+        {
+            BaseUri = baseUri;
+            _process = process;
+        }
+
+        #endregion
+
+        #region Instance methods
+
+        #region From interface IDisposable
+
+        /// <summary>
+        ///     Stops the temporary website process when this host started one.
+        /// </summary>
+        public void Dispose()
+        {
+            if (_process == null)
+            {
+                return;
+            }
+
+            Console.WriteLine("[DMBSearchBuilder] Stopping temporary website process.");
+            StopProcess(_process);
+            _process.Dispose();
+        }
+
+        #endregion
+
+        #endregion
     }
 
     internal sealed record DMBSearchLaunchProfile(string Name, Uri BaseUri);

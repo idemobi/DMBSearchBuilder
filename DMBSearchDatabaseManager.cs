@@ -1,14 +1,46 @@
+#region Copyright
+
+// ©2002-2026 idéMobi
+// www.idemobi.com
+
+#endregion
+
+#region
+
 using Microsoft.Data.Sqlite;
+
+#endregion
 
 namespace DMBSearchBuilder
 {
     /// <summary>
-    /// Manages the SQLite schema and writes generated page records for <see cref="DMBSearchBuilderAgent"/>.
+    ///     Manages the SQLite schema and writes generated page records for <see cref="DMBSearchBuilderAgent" />.
     /// </summary>
     public static class DMBSearchDatabaseManager
     {
+        #region Static methods
+
         /// <summary>
-        /// Ensures that the DMB search database schema exists.
+        ///     Removes all generated pages from the target database.
+        /// </summary>
+        /// <param name="databasePath">The SQLite database path to clear.</param>
+        public static void ClearPages(string databasePath)
+        {
+            EnsureTableCreated(databasePath);
+
+            using SqliteConnection connection = new($"Data Source={databasePath}");
+            connection.Open();
+
+            using SqliteCommand command = connection.CreateCommand();
+            command.CommandText = """
+                                  DELETE FROM SearchPageTerms;
+                                  DELETE FROM SearchPages;
+                                  """;
+            command.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        ///     Ensures that the DMB search database schema exists.
         /// </summary>
         /// <param name="databasePath">The SQLite database path to initialize.</param>
         public static void EnsureTableCreated(string databasePath)
@@ -62,26 +94,7 @@ namespace DMBSearchBuilder
         }
 
         /// <summary>
-        /// Removes all generated pages from the target database.
-        /// </summary>
-        /// <param name="databasePath">The SQLite database path to clear.</param>
-        public static void ClearPages(string databasePath)
-        {
-            EnsureTableCreated(databasePath);
-
-            using SqliteConnection connection = new($"Data Source={databasePath}");
-            connection.Open();
-
-            using SqliteCommand command = connection.CreateCommand();
-            command.CommandText = """
-                                  DELETE FROM SearchPageTerms;
-                                  DELETE FROM SearchPages;
-                                  """;
-            command.ExecuteNonQuery();
-        }
-
-        /// <summary>
-        /// Saves or updates one crawled page record.
+        ///     Saves or updates one crawled page record.
         /// </summary>
         /// <param name="databasePath">The SQLite database path that receives the page.</param>
         /// <param name="record">The page record to save.</param>
@@ -146,5 +159,7 @@ namespace DMBSearchBuilder
 
             transaction.Commit();
         }
+
+        #endregion
     }
 }
