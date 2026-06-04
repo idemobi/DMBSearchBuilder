@@ -1,0 +1,100 @@
+@using DMBServerHelper
+@model DMBSearchViewer.DMBSearchPageViewModel
+@{
+    Layout = "_Layout";
+    string pageTitle = WebLocalizer.GetInternal("VIEW_SEARCH_INDEX_TITLE").Value;
+    string formLabel = WebLocalizer.GetInternal("VIEW_SEARCH_INDEX_FORM_SEARCH_LABEL").Value;
+    string formPlaceholder = WebLocalizer.GetInternal("VIEW_SEARCH_INDEX_FORM_SEARCH_PLACEHOLDER").Value;
+    string submitTitle = WebLocalizer.GetInternal("ACTIONITEM_SEARCH_INDEX_SUBMIT_TITLE").Value;
+    string providerErrorTitle = WebLocalizer.GetInternal("ALERT_SEARCH_PROVIDER_ERROR_TITLE").Value;
+    string emptyTitle = WebLocalizer.GetInternal("VIEW_SEARCH_INDEX_EMPTY_TITLE").Value;
+    string emptyDescription = WebLocalizer.GetInternal("VIEW_SEARCH_INDEX_EMPTY_DESCRIPTION").Value;
+    string noResultTitle = WebLocalizer.GetInternal("VIEW_SEARCH_INDEX_NORESULT_TITLE").Value;
+    string noResultDescription = WebLocalizer.GetInternal("VIEW_SEARCH_INDEX_NORESULT_DESCRIPTION", Model.Term).Value;
+    string resultsForTitle = WebLocalizer.GetInternal("VIEW_SEARCH_INDEX_RESULTS_FOR_TITLE", Model.Term).Value;
+    string scoreLabel = WebLocalizer.GetInternal("VIEW_SEARCH_INDEX_RESULT_SCORE_LABEL").Value;
+}
+
+<main class="container py-5">
+    <div class="card border-0 shadow-sm mb-5">
+        <div class="card-body p-4">
+            <h1 class="h2 mb-3">@pageTitle</h1>
+            <form class="row g-2 align-items-center" method="get" action="/Search">
+                <div class="col-12 col-md">
+                    <label class="visually-hidden" for="search-page-term">@formLabel</label>
+                    <input id="search-page-term" class="form-control form-control-lg" type="search" name="term" value="@Model.Term" placeholder="@formPlaceholder" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" />
+                </div>
+                <div class="col-12 col-md-auto">
+                    <button class="btn btn-primary btn-lg w-100" type="submit">
+                        <i class="bi bi-search" aria-hidden="true"></i>
+                        @submitTitle
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @if (Model.Errors.Count > 0)
+    {
+        <div class="alert alert-warning" role="alert">
+            <div class="fw-semibold mb-1">@providerErrorTitle</div>
+            @foreach (DMBSearchViewer.DMBSearchProviderError error in Model.Errors)
+            {
+                <div><strong>@error.ProviderName</strong>: @error.Message</div>
+            }
+        </div>
+    }
+
+    @if (string.IsNullOrWhiteSpace(Model.Term))
+    {
+        <div class="text-center py-5">
+            <i class="bi bi-search display-5 text-secondary" aria-hidden="true"></i>
+            <h2 class="h4 mt-3">@emptyTitle</h2>
+            <p class="text-muted mb-0">@emptyDescription</p>
+        </div>
+    }
+    else if (Model.Results.Count == 0)
+    {
+        <div class="text-center py-5">
+            <i class="bi bi-search display-5 text-secondary" aria-hidden="true"></i>
+            <h2 class="h4 mt-3">@noResultTitle</h2>
+            <p class="text-muted mb-0">@noResultDescription</p>
+        </div>
+    }
+    else
+    {
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="h4 mb-0">@resultsForTitle</h2>
+            <span class="badge text-bg-secondary">@Model.Results.Count</span>
+        </div>
+
+        <div class="list-group shadow-sm">
+            @foreach (DMBSearchViewer.DMBSearchResult result in Model.Results)
+            {
+                int score = Convert.ToInt32(Math.Round(Math.Clamp(result.Score, 0, 100)));
+                string scoreClass = score >= 80 ? "border-success text-success" :
+                    score >= 50 ? "border-warning text-warning" :
+                    "border-secondary text-secondary";
+
+                <a class="list-group-item list-group-item-action py-3" href="@result.Url">
+                    <div class="d-flex align-items-start gap-3">
+                        <span class="d-inline-flex flex-column align-items-center justify-content-center flex-shrink-0 border rounded-2 @scoreClass" style="width: 3.25rem; height: 2.75rem;">
+                            <span class="text-uppercase fw-semibold" style="font-size: .625rem; line-height: 1;">@scoreLabel</span>
+                            <span class="fw-semibold">@score</span>
+                        </span>
+                        <div class="w-100" style="min-width: 0;">
+                            <div class="d-flex w-100 justify-content-between gap-3">
+                                <h3 class="h6 mb-1 text-break">@result.Title</h3>
+                            </div>
+                            @if (!string.IsNullOrWhiteSpace(result.Excerpt))
+                            {
+                                <p class="mb-1 text-muted text-break">@result.Excerpt</p>
+                            }
+                            <small class="d-block text-body-secondary text-break">@(string.IsNullOrWhiteSpace(result.DisplayUrl) ? result.Url : result.DisplayUrl)</small>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    }
+</main>

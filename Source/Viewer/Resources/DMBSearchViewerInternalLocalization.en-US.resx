@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>1.3</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="NAVBAR_SEARCH_FORM_LABEL" xml:space="preserve"><value>Search</value></data>
+  <data name="NAVBAR_SEARCH_FORM_PLACEHOLDER" xml:space="preserve"><value>Search</value></data>
+  <data name="VIEW_SEARCH_INDEX_TITLE" xml:space="preserve"><value>Search</value></data>
+  <data name="VIEW_SEARCH_INDEX_DESCRIPTION" xml:space="preserve"><value>Search across generated site and documentation indexes.</value></data>
+  <data name="VIEW_SEARCH_INDEX_KEYWORDS" xml:space="preserve"><value>search documentation site</value></data>
+  <data name="VIEW_SEARCH_INDEX_FORM_SEARCH_LABEL" xml:space="preserve"><value>Search term</value></data>
+  <data name="VIEW_SEARCH_INDEX_FORM_SEARCH_PLACEHOLDER" xml:space="preserve"><value>Search a page, component, or API type</value></data>
+  <data name="ACTIONITEM_SEARCH_INDEX_SUBMIT_TITLE" xml:space="preserve"><value>Search</value></data>
+  <data name="ALERT_SEARCH_PROVIDER_ERROR_TITLE" xml:space="preserve"><value>Some providers did not answer.</value></data>
+  <data name="ERROR_SEARCH_PROVIDER_UNAVAILABLE_MESSAGE" xml:space="preserve"><value>The provider could not return results.</value></data>
+  <data name="VIEW_SEARCH_INDEX_EMPTY_TITLE" xml:space="preserve"><value>Start a search</value></data>
+  <data name="VIEW_SEARCH_INDEX_EMPTY_DESCRIPTION" xml:space="preserve"><value>Enter a term to search generated pages and documentation indexes.</value></data>
+  <data name="VIEW_SEARCH_INDEX_NORESULT_TITLE" xml:space="preserve"><value>No results</value></data>
+  <data name="VIEW_SEARCH_INDEX_NORESULT_DESCRIPTION" xml:space="preserve"><value>No indexed page matches {0}.</value></data>
+  <data name="VIEW_SEARCH_INDEX_RESULTS_FOR_TITLE" xml:space="preserve"><value>Results for {0}</value></data>
+  <data name="VIEW_SEARCH_INDEX_RESULT_SCORE_LABEL" xml:space="preserve"><value>Score</value></data>
+</root>

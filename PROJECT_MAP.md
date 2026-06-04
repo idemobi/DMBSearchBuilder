@@ -6,13 +6,19 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 
 - Project name: `DMBSearchBuilder`
 - Project root folder: `DMBSearchBuilder`
+- Builder source folder: `Source/Builder`
+- Core source folder: `Source/Core`
+- Viewer source folder: `Source/Viewer`
 - Main role: prebuild crawler and SQLite search-index writer.
-- Important folders: `Configuration/`, `Resources/`, `wwwroot/css/searchbuilder/`, and `wwwroot/js/searchbuilder/`.
+- Important folders: `Source/Builder/`, `Source/Core/`, and `Source/Viewer/`.
+- Labs folder: `Labs/`
+- Unit test folders: `UnitTests/Builder/`, `UnitTests/Core/`, and `UnitTests/Viewer/`.
 - Documentation target: `labs_idemobi_com`
 
 ## Folder responsibilities
 
-- Root files
+- `Source/Builder/`
+  - `DMBSearchBuilder.csproj`: package project file.
   - `DMBSearchBuilderAgent.cs`: main orchestration entry point for building the search database.
   - `DMBSearchBuildOptions.cs`: build-time options such as base URI, output path, limits, and excluded paths.
   - `DMBSearchLaunchProfileBuildOptions.cs`: launch-profile-oriented build options.
@@ -21,22 +27,32 @@ When copying this file to another PageBuilder ecosystem project, update this sec
   - `DMBSearchDatabaseManager.cs`: SQLite database creation and record persistence.
   - `DMBSearchKeywordExtractor.cs`: keyword extraction behavior.
   - `DMBSearchTextNormalizer.cs`: normalization behavior used before keyword extraction.
+  - `README.md`, `LICENSE.md`, `DMBSearchBuilder.png`, and `DMBSearchBuilder.snk`: package metadata and signing assets.
 
-- `Configuration/`
-  - Package configuration and host integration.
-
-- `Resources/`
+- `Source/Builder/Resources/`
   - Internal and data-annotation localization `.resx` assets for `DMBSearchBuilder`.
 
-- `wwwroot/`
+- `Source/Builder/wwwroot/`
   - Embedded static assets for search-builder-related scripts and styles.
+
+- `Source/Core/`
+  - Shared search normalization package, package metadata, and package-specific AI/documentation context.
+
+- `Source/Viewer/`
+  - Runtime search UI package, Razor views, resources, providers, package metadata, and package-specific AI/documentation context.
+
+- `Labs/`
+  - Razor project that provides SearchBuilder and SearchViewer documentation controllers, views, and local view helper extensions for `labs_idemobi_com`.
+
+- `UnitTests/`
+  - Search family unit tests grouped by Builder, Core, and Viewer package.
 
 - `bin/` and `obj/`
   - Build outputs and intermediate files. Do not use these folders as documentation or source-of-truth inputs.
 
 ## Documentation-related files
 
-- `README.md`: package overview and usage context.
+- `Source/Builder/README.md`: package overview and usage context.
 - `AGENTS.md`: local AI rules and scope for this package.
 - `AI_CONTEXT.md`: additional context for AI-assisted maintenance.
 - `DOCUMENTATION_RULES.md`: strict documentation policy.

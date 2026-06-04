@@ -1,0 +1,162 @@
+@using DMBBootstrapBuilder
+@using DMBEffectBuilder
+@using DMBPageBuilder
+@{
+    Layout = "_Layout";
+}
+
+@* ── Hero ── *@
+@using (Html.SectionBuilder().SetHeight(125, UnitSize.px).BootstrapBackgroundEffect(VariantStyle.Normal).Begin())
+{
+    @using (Html.FlexBlockBuilder().SetAlignItemsCenter().SetJustifyContentCenter().Begin())
+    {
+        @using (Html.BlockBuilder().AsTextCenter().Begin())
+        {
+            @Html.TitleBuilder().SetTitle("Rendering Pipeline — SearchViewer", TitleLevel.One).Render()
+            @using (Html.PB_P().AsLead().Begin())
+            {
+                @:From navbar input to merged results.
+            }
+        }
+    }
+}
+
+@using (Html.ContainerBuilder().SetPadding(SpacingSide.Y, SpacingSize.Five).Begin())
+{
+    @using (Html.RowBuilder().Begin())
+    {
+        @using (Html.ColBuilder().SetCol(ColSize.Col12).Begin())
+        {
+            @* ── Step 1 ── *@
+            @using (Html.BlockBuilder().AsTimelineStep().Begin())
+            {
+                @using (Html.BlockBuilder().AsTimelineStepBadge().Begin())
+                {
+                    @:1
+                }
+                @Html.TitleBuilder().SetTitle("Navbar Submission", TitleLevel.Three).AsH4().Render()
+                @using (Html.PB_P().Begin())
+                {
+                    @:The navbar component submits the search term to
+                    @using (Html.PB_Span().AsMonospace().Begin())
+                    {
+                        @:/Search
+                    }
+                    @: via a GET request with the query in
+                    @using (Html.PB_Span().AsMonospace().Begin())
+                    {
+                        @:DMBSearchQuery
+                    }
+                    @:.
+                }
+            }
+
+            @* ── Step 2 ── *@
+            @using (Html.BlockBuilder().AsTimelineStep().Begin())
+            {
+                @using (Html.BlockBuilder().AsTimelineStepBadge().Begin())
+                {
+                    @:2
+                }
+                @Html.TitleBuilder().SetTitle("Controller Dispatch", TitleLevel.Three).AsH4().Render()
+                @using (Html.PB_P().Begin())
+                {
+                    @:The controller normalizes page metadata and delegates provider execution to the
+                    @using (Html.PB_Span().AsMonospace().Begin())
+                    {
+                        @:DMBSearchCompositeAgent
+                    }
+                    @:.
+                }
+            }
+
+            @* ── Step 3 ── *@
+            @using (Html.BlockBuilder().AsTimelineStep().Begin())
+            {
+                @using (Html.BlockBuilder().AsTimelineStepBadge().Begin())
+                {
+                    @:3
+                }
+                @Html.TitleBuilder().SetTitle("Provider Execution", TitleLevel.Three).AsH4().Render()
+                @using (Html.PB_P().Begin())
+                {
+                    @:Each provider searches its own database and computes its own final score. Provider errors are isolated and do not interrupt other providers.
+                }
+            }
+
+            @* ── Step 4 ── *@
+            @using (Html.BlockBuilder().AsTimelineStep().Begin())
+            {
+                @using (Html.BlockBuilder().AsTimelineStepBadge().Begin())
+                {
+                    @:4
+                }
+                @Html.TitleBuilder().SetTitle("Merge & Sort", TitleLevel.Three).AsH4().Render()
+                @using (Html.PB_P().Begin())
+                {
+                    @:The composite agent merges all successful results and sorts by
+                    @using (Html.PB_Span().AsMonospace().Begin())
+                    {
+                        @:Score
+                    }
+                    @: descending — the highest-relevance items appear first regardless of their source.
+                }
+            }
+
+            @* ── Step 5 (final) ── *@
+            @using (Html.BlockBuilder().AsTimelineStep().Begin())
+            {
+                @using (Html.BlockBuilder().AsTimelineStepBadge("bg-success").Begin())
+                {
+                    @using (Html.PB_Span().AddClass("bi bi-check").Begin()) { }
+                }
+                @Html.TitleBuilder().SetTitle("Results Page Rendered", TitleLevel.Three).AsH4().Render()
+                @using (Html.PB_P().Begin())
+                {
+                    @:The result page renders score, title, excerpt and a navigable URL for each result — without knowing how the source computed relevance.
+                }
+            }
+
+            @* ── Scoring Rule ── *@
+            @Html.TitleBuilder().SetTitle("Scoring Rule", TitleLevel.Two).AsSubSectionHeading().Render()
+            @using (Html.PB_P().Begin())
+            {
+                @:Scores are provider-owned. The viewer treats the score as a comparable relevance number and keeps future providers free to use their own indexing strategy.
+            }
+
+            @* ── Performance highlight ── *@
+            @using (Html.BlockBuilder().AsInfoCallout().Begin())
+            {
+                @using (Html.FlexBlockBuilder().Begin())
+                {
+                    @using (Html.BlockBuilder().AsCalloutIcon().Begin())
+                    {
+                        @using (Html.PB_Span().AddClass("bi bi-lightning-charge-fill fs-2 text-warning").Begin()) { }
+                    }
+                    @using (Html.BlockBuilder().Begin())
+                    {
+                        @Html.TitleBuilder().SetTitle("Resilient by Design", TitleLevel.Five).AsAlertHeading().Render()
+                        @using (Html.PB_P().AsNoMargin().Begin())
+                        {
+                            @:Provider errors are isolated — one failing source never blocks the others. The result page always renders with whatever data is available.
+                        }
+                    }
+                }
+            }
+
+            @* ── Next Step ── *@
+            @using (Html.BlockBuilder().AsSidebarNote().Begin())
+            {
+                @using (Html.BlockBuilder().AsTextCenter().Begin())
+                {
+                    @Html.TitleBuilder().SetTitle("See how SearchBuilder prepares the data", TitleLevel.Four).Render()
+                    @using (Html.PB_P().AsSmallMuted().Begin())
+                    {
+                        @:Learn how the build-time module crawls and indexes pages into the database SearchViewer reads.
+                    }
+                    @Html.Button(ActionItemFactory.AspRoute("SearchBuilder", "Introduction").SetTitle("SearchBuilder").SetIcon(IconStruct.Bootstrap("bi-search")).SetVariant(VariantStyle.Primary)).Render()
+                }
+            }
+        }
+    }
+}

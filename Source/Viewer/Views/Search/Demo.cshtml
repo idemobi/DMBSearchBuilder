@@ -1,0 +1,81 @@
+@using DMBServerHelper
+@model DMBSearchViewer.DMBSearchPageViewModel
+@{
+    Layout = "_Layout";
+    string scoreLabel = WebLocalizer.GetInternal("VIEW_SEARCH_INDEX_RESULT_SCORE_LABEL").Value;
+}
+
+<section class="py-5 border-bottom bg-body-tertiary">
+    <div class="container">
+        <h1 class="h2 mb-2">DMBSearchViewer Preview</h1>
+        <p class="lead mb-0">Manual states for the navbar search component and result listing page.</p>
+    </div>
+</section>
+
+<main class="container py-5">
+    <section class="mb-5">
+        <h2 class="h4 mb-3">Normal State</h2>
+        <form class="row g-2 align-items-center" method="get" action="/Search">
+            <div class="col-12 col-md">
+                <label class="visually-hidden" for="demo-search-term">Search term</label>
+                <input id="demo-search-term" class="form-control" type="search" name="term" value="@Model.Term" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" />
+            </div>
+            <div class="col-12 col-md-auto">
+                <button class="btn btn-primary w-100" type="submit">
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                    Search
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <section class="mb-5">
+        <h2 class="h4 mb-3">Realistic Data Example</h2>
+        <div class="list-group shadow-sm">
+            @foreach (DMBSearchViewer.DMBSearchResult result in Model.Results)
+            {
+                int score = Convert.ToInt32(Math.Round(Math.Clamp(result.Score, 0, 100)));
+                string scoreClass = score >= 80 ? "border-success text-success" :
+                    score >= 50 ? "border-warning text-warning" :
+                    "border-secondary text-secondary";
+
+                <a class="list-group-item list-group-item-action py-3" href="@result.Url">
+                    <div class="d-flex align-items-start gap-3">
+                        <span class="d-inline-flex flex-column align-items-center justify-content-center flex-shrink-0 border rounded-2 @scoreClass" style="width: 3.25rem; height: 2.75rem;">
+                            <span class="text-uppercase fw-semibold" style="font-size: .625rem; line-height: 1;">@scoreLabel</span>
+                            <span class="fw-semibold">@score</span>
+                        </span>
+                        <div class="w-100" style="min-width: 0;">
+                            <div class="d-flex w-100 justify-content-between gap-3">
+                                <h3 class="h6 mb-1 text-break">@result.Title</h3>
+                                <span class="badge text-bg-light border text-nowrap">@result.SourceName</span>
+                            </div>
+                            <p class="mb-1 text-muted text-break">@result.Excerpt</p>
+                            <small class="d-block text-body-secondary text-break">@(string.IsNullOrWhiteSpace(result.DisplayUrl) ? result.Url : result.DisplayUrl)</small>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </section>
+
+    <section class="mb-5">
+        <h2 class="h4 mb-3">Empty State</h2>
+        <div class="text-center py-5 border rounded">
+            <i class="bi bi-search display-5 text-secondary" aria-hidden="true"></i>
+            <h3 class="h5 mt-3">No results</h3>
+            <p class="text-muted mb-0">No indexed page matches the current term.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="h4 mb-3">Error State</h2>
+        <div class="alert alert-warning" role="alert">
+            <div class="fw-semibold mb-1">Some providers did not answer.</div>
+            @foreach (DMBSearchViewer.DMBSearchProviderError error in Model.Errors)
+            {
+                <div><strong>@error.ProviderName</strong>: @error.Message</div>
+            }
+        </div>
+    </section>
+</main>

@@ -1,0 +1,146 @@
+@using DMBBootstrapBuilder
+@using DMBComponentBuilder
+@using DMBEffectBuilder
+@using DMBPageBuilder
+@{
+    Layout = "_Layout";
+}
+
+@* ── Hero ── *@
+@using (Html.SectionBuilder().SetHeight(125, UnitSize.px).BootstrapBackgroundEffect(VariantStyle.Normal).Begin())
+{
+    @using (Html.FlexBlockBuilder().SetAlignItemsCenter().SetJustifyContentCenter().Begin())
+    {
+        @using (Html.BlockBuilder().AsTextCenter().Begin())
+        {
+            @Html.TitleBuilder().SetTitle("Getting Started — SearchViewer", TitleLevel.One).Render()
+            @using (Html.PB_P().AsLead().Begin())
+            {
+                @:Install runtime search into the host website.
+            }
+        }
+    }
+}
+
+@using (Html.ContainerBuilder().SetPadding(SpacingSide.Y, SpacingSize.Five).Begin())
+{
+    @using (Html.RowBuilder().Begin())
+    {
+        @using (Html.ColBuilder().SetCol(ColSize.Col12).Begin())
+        {
+            @* ── Step 1 ── *@
+            @Html.TitleBuilder().SetTitle("1. Install the NuGet package", TitleLevel.Two).AsSectionHeading().Render()
+            @using (Html.PB_P().Begin())
+            {
+                @:SearchViewer belongs in the ASP.NET Core website that renders the search UI.
+            }
+            @(Html.CodeBlock("dotnet add package DMBSearchViewer", CodeLanguage.Bash)
+                .SetTitle("Install DMBSearchViewer")
+                .SetCopyButton())
+
+            @* ── Step 2 ── *@
+            @Html.TitleBuilder().SetTitle("2. Configure services", TitleLevel.Two).AsSubSectionHeading().Render()
+            @using (Html.PB_P().Begin())
+            {
+                @:Load SearchViewer after the PageBuilder and BootstrapBuilder infrastructure.
+            }
+            @(Html.CodeBlock(@"using DMBSearchViewer;
+
+DMBSearchViewerConfiguration.LoadCommonConfig(builder);", CodeLanguage.CSharp)
+                .SetTitle("Program.cs — services")
+                .SetCopyButton())
+
+            @* ── Step 3 ── *@
+            @Html.TitleBuilder().SetTitle("3. Use the application module", TitleLevel.Two).AsSubSectionHeading().Render()
+            @using (Html.PB_P().Begin())
+            {
+                @:Call
+                @using (Html.PB_Span().AsMonospace().Begin())
+                {
+                    @:UseApp
+                }
+                @: after building the application so the viewer can expose its controller and assets.
+            }
+            @(Html.CodeBlock(@"WebApplication app = builder.Build();
+
+DMBSearchViewerConfiguration.UseApp(app);", CodeLanguage.CSharp)
+                .SetTitle("Program.cs — middleware")
+                .SetCopyButton())
+
+            @* ── Step 4 ── *@
+            @Html.TitleBuilder().SetTitle("4. Provide search data", TitleLevel.Two).AsSubSectionHeading().Render()
+            @using (Html.PB_P().Begin())
+            {
+                @:Register providers or use the built-in providers for SearchBuilder and DocumentationViewer. Each provider returns
+                @using (Html.PB_Span().AsMonospace().Begin())
+                {
+                    @:DMBSearchResult
+                }
+                @: objects with a final
+                @using (Html.PB_Span().AsMonospace().Begin())
+                {
+                    @:Score
+                }
+                @:.
+            }
+
+            @* ── Runtime Pieces callout ── *@
+            @using (Html.BlockBuilder().AsInfoCallout().Begin())
+            {
+                @using (Html.FlexBlockBuilder().Begin())
+                {
+                    @using (Html.BlockBuilder().AsCalloutIcon().Begin())
+                    {
+                        @using (Html.PB_Span().AddClass("bi bi-collection-fill fs-2 text-info").Begin()) { }
+                    }
+                    @using (Html.BlockBuilder().Begin())
+                    {
+                        @Html.TitleBuilder().SetTitle("Runtime Pieces", TitleLevel.Five).AsAlertHeading().Render()
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsMonospaceSmall().Begin())
+                            {
+                                @:DMBSearchNavbarComponent
+                            }
+                        }
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsMonospaceSmall().Begin())
+                            {
+                                @:DMBSearchCompositeAgent
+                            }
+                        }
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsMonospaceSmall().Begin())
+                            {
+                                @:IDMBSearchProvider
+                            }
+                        }
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsMonospaceSmall().Begin())
+                            {
+                                @:SearchController
+                            }
+                        }
+                    }
+                }
+            }
+
+            @* ── Next Step ── *@
+            @using (Html.BlockBuilder().AsSidebarNote().Begin())
+            {
+                @using (Html.BlockBuilder().AsTextCenter().Begin())
+                {
+                    @Html.TitleBuilder().SetTitle("Understand how providers and results are composed", TitleLevel.Four).Render()
+                    @using (Html.PB_P().AsSmallMuted().Begin())
+                    {
+                        @:Explore the provider contract and the composite aggregation architecture.
+                    }
+                    @Html.Button(ActionItemFactory.AspRoute("SearchViewer", "Architecture").SetTitle("Architecture").SetIcon(IconStruct.Bootstrap("bi-diagram-3")).SetVariant(VariantStyle.Primary)).Render()
+                }
+            }
+        }
+    }
+}

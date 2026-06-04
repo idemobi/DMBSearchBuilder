@@ -1,0 +1,207 @@
+@using DMBBootstrapBuilder
+@using DMBEffectBuilder
+@using DMBPageBuilder
+@{
+    Layout = "_Layout";
+}
+
+@* ── Hero ── *@
+@using (Html.SectionBuilder().SetHeight(125, UnitSize.px).BootstrapBackgroundEffect(VariantStyle.Normal).Begin())
+{
+    @using (Html.FlexBlockBuilder().SetAlignItemsCenter().SetJustifyContentCenter().Begin())
+    {
+        @using (Html.BlockBuilder().AsTextCenter().Begin())
+        {
+            @Html.TitleBuilder().SetTitle("Rendering Pipeline — SearchBuilder", TitleLevel.One).Render()
+            @using (Html.PB_P().AsLead().Begin())
+            {
+                @:From local website pages to weighted search records.
+            }
+        }
+    }
+}
+
+@using (Html.ContainerBuilder().SetPadding(SpacingSide.Y, SpacingSize.Five).Begin())
+{
+    @using (Html.RowBuilder().Begin())
+    {
+        @using (Html.ColBuilder().SetCol(ColSize.Col12).Begin())
+        {
+            @* ── Step 1 ── *@
+            @using (Html.BlockBuilder().AsTimelineStep().Begin())
+            {
+                @using (Html.BlockBuilder().AsTimelineStepBadge().Begin())
+                {
+                    @:1
+                }
+                @Html.TitleBuilder().SetTitle("Resolve Launch Profile", TitleLevel.Three).AsH4().Render()
+                @using (Html.PB_P().Begin())
+                {
+                    @:Resolve the launch profile and base URI from
+                    @using (Html.PB_Span().AsMonospace().Begin())
+                    {
+                        @:launchSettings.json
+                    }
+                    @: using the configured
+                    @using (Html.PB_Span().AsMonospace().Begin())
+                    {
+                        @:LaunchProfileName
+                    }
+                    @: or its fallback.
+                }
+            }
+
+            @* ── Step 2 ── *@
+            @using (Html.BlockBuilder().AsTimelineStep().Begin())
+            {
+                @using (Html.BlockBuilder().AsTimelineStepBadge().Begin())
+                {
+                    @:2
+                }
+                @Html.TitleBuilder().SetTitle("Start the Website", TitleLevel.Three).AsH4().Render()
+                @using (Html.PB_P().Begin())
+                {
+                    @:Start the website with the selected launch profile, optionally adding
+                    @using (Html.PB_Span().AsMonospace().Begin())
+                    {
+                        @:--no-build
+                    }
+                    @: only if it is not already available.
+                }
+            }
+
+            @* ── Step 3 ── *@
+            @using (Html.BlockBuilder().AsTimelineStep().Begin())
+            {
+                @using (Html.BlockBuilder().AsTimelineStepBadge().Begin())
+                {
+                    @:3
+                }
+                @Html.TitleBuilder().SetTitle("Crawl HTML Pages", TitleLevel.Three).AsH4().Render()
+                @using (Html.PB_P().Begin())
+                {
+                    @:Crawl same-site HTML pages while excluding documentation and search paths configured in
+                    @using (Html.PB_Span().AsMonospace().Begin())
+                    {
+                        @:ExcludedPathPrefixes
+                    }
+                    @:.
+                }
+            }
+
+            @* ── Step 4 ── *@
+            @using (Html.BlockBuilder().AsTimelineStep().Begin())
+            {
+                @using (Html.BlockBuilder().AsTimelineStepBadge().Begin())
+                {
+                    @:4
+                }
+                @Html.TitleBuilder().SetTitle("Extract & Normalize", TitleLevel.Three).AsH4().Render()
+                @using (Html.PB_P().Begin())
+                {
+                    @:Extract title, description, headings, body text and compact technical names.
+                    @: Normalize each token to be accent-insensitive, case-insensitive and PascalCase-aware.
+                }
+            }
+
+            @* ── Step 5 ── *@
+            @using (Html.BlockBuilder().AsTimelineStep().Begin())
+            {
+                @using (Html.BlockBuilder().AsTimelineStepBadge().Begin())
+                {
+                    @:5
+                }
+                @Html.TitleBuilder().SetTitle("Write Database Records", TitleLevel.Three).AsH4().Render()
+                @using (Html.PB_P().Begin())
+                {
+                    @:Write page records and weighted terms into
+                    @using (Html.PB_Span().AsMonospace().Begin())
+                    {
+                        @:Search/data.db
+                    }
+                    @: — one
+                    @using (Html.PB_Span().AsMonospace().Begin())
+                    {
+                        @:SearchPages
+                    }
+                    @: row and many
+                    @using (Html.PB_Span().AsMonospace().Begin())
+                    {
+                        @:SearchPageTerms
+                    }
+                    @: rows per page.
+                }
+            }
+
+            @* ── Step 6 (final) ── *@
+            @using (Html.BlockBuilder().AsTimelineStep().Begin())
+            {
+                @using (Html.BlockBuilder().AsTimelineStepBadge("bg-success").Begin())
+                {
+                    @using (Html.PB_Span().AddClass("bi bi-check").Begin()) { }
+                }
+                @Html.TitleBuilder().SetTitle("Stop the Temporary Process", TitleLevel.Three).AsH4().Render()
+                @using (Html.PB_P().Begin())
+                {
+                    @:Stop the temporary website process when the builder started it. Processes started externally are left running.
+                }
+            }
+
+            @* ── Scoring Sources ── *@
+            @Html.TitleBuilder().SetTitle("Scoring Sources", TitleLevel.Two).AsSubSectionHeading().Render()
+            @using (Html.PB_P().Begin())
+            {
+                @:Title and heading matches receive more weight than body text. Compact names such as
+                @using (Html.PB_Span().AsMonospace().Begin())
+                {
+                    @:TitleBuilder
+                }
+                @: are also indexed so users can search either
+                @using (Html.PB_Span().AsMonospace().Begin())
+                {
+                    @:title builder
+                }
+                @: or
+                @using (Html.PB_Span().AsMonospace().Begin())
+                {
+                    @:titlebuilder
+                }
+                @:.
+            }
+
+            @* ── Performance highlight ── *@
+            @using (Html.BlockBuilder().AsInfoCallout().Begin())
+            {
+                @using (Html.FlexBlockBuilder().Begin())
+                {
+                    @using (Html.BlockBuilder().AsCalloutIcon().Begin())
+                    {
+                        @using (Html.PB_Span().AddClass("bi bi-lightning-charge-fill fs-2 text-warning").Begin()) { }
+                    }
+                    @using (Html.BlockBuilder().Begin())
+                    {
+                        @Html.TitleBuilder().SetTitle("Zero Runtime Cost", TitleLevel.Five).AsAlertHeading().Render()
+                        @using (Html.PB_P().AsNoMargin().Begin())
+                        {
+                            @:All discovery and normalization happens at prebuild time — the production website only reads a prepared SQLite file, so search latency is determined by query performance alone.
+                        }
+                    }
+                }
+            }
+
+            @* ── Next Step ── *@
+            @using (Html.BlockBuilder().AsSidebarNote().Begin())
+            {
+                @using (Html.BlockBuilder().AsTextCenter().Begin())
+                {
+                    @Html.TitleBuilder().SetTitle("See how SearchViewer consumes this database", TitleLevel.Four).Render()
+                    @using (Html.PB_P().AsSmallMuted().Begin())
+                    {
+                        @:Learn how the runtime module merges provider results and renders the search page.
+                    }
+                    @Html.Button(ActionItemFactory.AspRoute("SearchViewer", "Introduction").SetTitle("SearchViewer").SetIcon(IconStruct.Bootstrap("bi-search-heart")).SetVariant(VariantStyle.Primary)).Render()
+                }
+            }
+        }
+    }
+}

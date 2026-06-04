@@ -9,7 +9,7 @@ Guide local development for `DMBSearchBuilder` changes.
 When copying this file to another PageBuilder ecosystem project, update this section first.
 
 - Project name: `DMBSearchBuilder`
-- Main code areas: root crawler/build classes, `Configuration/`, `Resources/`, and embedded `wwwroot/` assets.
+- Main code areas: `Source/Builder/` crawler/build classes, `Source/Builder/Resources/`, and embedded `Source/Builder/wwwroot/` assets.
 - Main risk areas: crawl scope, URL normalization, excluded paths, text normalization, keyword extraction, SQLite writes, generated database compatibility, and prebuild integration.
 - Documentation target: `labs_idemobi_com`
 

@@ -1,0 +1,151 @@
+@using DMBBootstrapBuilder
+@using DMBComponentBuilder
+@using DMBEffectBuilder
+@using DMBPageBuilder
+@{
+    Layout = "_Layout";
+}
+
+@* ── Hero ── *@
+@using (Html.SectionBuilder().SetHeight(125, UnitSize.px).BootstrapBackgroundEffect(VariantStyle.Normal).Begin())
+{
+    @using (Html.FlexBlockBuilder().SetAlignItemsCenter().SetJustifyContentCenter().Begin())
+    {
+        @using (Html.BlockBuilder().AsTextCenter().Begin())
+        {
+            @Html.TitleBuilder().SetTitle("Architecture — SearchViewer", TitleLevel.One).Render()
+            @using (Html.PB_P().AsLead().Begin())
+            {
+                @:Provider-based runtime search.
+            }
+        }
+    }
+}
+
+@using (Html.ContainerBuilder().SetPadding(SpacingSide.Y, SpacingSize.Five).Begin())
+{
+    @using (Html.RowBuilder().Begin())
+    {
+        @using (Html.ColBuilder().SetCol(ColSize.Col12).Begin())
+        {
+            @* ── 1. Module Responsibilities ── *@
+            @Html.TitleBuilder().SetTitle("Module Responsibilities", TitleLevel.Two).AsSectionHeading().Render()
+            @using (Html.PB_P().Begin())
+            {
+                @using (Html.PB_Span().AsBold().Begin())
+                {
+                    @:DMBSearchViewer
+                }
+                @: owns the search UI and result aggregation. It does not impose one storage engine or scoring model. Every provider can use a different index as long as it returns normalized results.
+            }
+
+            @* ── 2. Provider Contract ── *@
+            @Html.TitleBuilder().SetTitle("Provider Contract", TitleLevel.Two).AsSubSectionHeading().Render()
+            @using (Html.PB_P().Begin())
+            {
+                @:Implement
+                @using (Html.PB_Span().AsMonospace().Begin())
+                {
+                    @:IDMBSearchProvider
+                }
+                @: to plug any data source into the viewer. The composite agent calls all registered providers, isolates errors and sorts merged results by
+                @using (Html.PB_Span().AsMonospace().Begin())
+                {
+                    @:Score
+                }
+                @:.
+            }
+            @(Html.CodeBlock(@"public interface IDMBSearchProvider
+{
+    string Name { get; }
+
+    Task<IReadOnlyList<DMBSearchResult>> SearchAsync(
+        DMBSearchQuery query,
+        CancellationToken cancellationToken);
+}", CodeLanguage.CSharp)
+                .SetTitle("Search provider API")
+                .SetCopyButton())
+
+            @* ── 3. Built-in Providers ── *@
+            @Html.TitleBuilder().SetTitle("Built-in Providers", TitleLevel.Two).AsSubSectionHeading().Render()
+            @using (Html.PB_P().Begin())
+            {
+                @using (Html.PB_Span().AsMonospace().Begin())
+                {
+                    @:DMBSearchBuilderSearchProvider
+                }
+                @: searches the generated site crawl database.
+            }
+            @using (Html.PB_P().Begin())
+            {
+                @using (Html.PB_Span().AsMonospace().Begin())
+                {
+                    @:DMBDocumentationViewerSearchProvider
+                }
+                @: searches generated documentation objects.
+            }
+
+            @* ── Tech Stack ── *@
+            @using (Html.BlockBuilder().AsInfoCallout().Begin())
+            {
+                @using (Html.FlexBlockBuilder().Begin())
+                {
+                    @using (Html.BlockBuilder().AsCalloutIcon().Begin())
+                    {
+                        @using (Html.PB_Span().AddClass("bi bi-gear-fill fs-2 text-info").Begin()) { }
+                    }
+                    @using (Html.BlockBuilder().Begin())
+                    {
+                        @Html.TitleBuilder().SetTitle("Tech Stack", TitleLevel.Five).AsAlertHeading().Render()
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsBold().Begin())
+                            {
+                                @:Backend:
+                            }
+                            @: .NET 10 / ASP.NET Core MVC
+                        }
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsBold().Begin())
+                            {
+                                @:UI Integration:
+                            }
+                            @: BootstrapBuilder navbar component
+                        }
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsBold().Begin())
+                            {
+                                @:Architecture:
+                            }
+                            @: Composite Provider Pattern
+                        }
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsBold().Begin())
+                            {
+                                @:Isolation:
+                            }
+                            @: Per-provider error containment
+                        }
+                    }
+                }
+            }
+
+            @* ── Next Step ── *@
+            @using (Html.BlockBuilder().AsSidebarNote().Begin())
+            {
+                @using (Html.BlockBuilder().AsTextCenter().Begin())
+                {
+                    @Html.TitleBuilder().SetTitle("See the full rendering pipeline", TitleLevel.Four).Render()
+                    @using (Html.PB_P().AsSmallMuted().Begin())
+                    {
+                        @:Follow each step from navbar input to the final merged results page.
+                    }
+                    @Html.Button(ActionItemFactory.AspRoute("SearchViewer", "RenderingPipeline").SetTitle("Rendering Pipeline").SetIcon(IconStruct.Bootstrap("bi-bezier2")).SetVariant(VariantStyle.Primary)).Render()
+                }
+            }
+        }
+    }
+}

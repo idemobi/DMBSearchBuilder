@@ -1,0 +1,148 @@
+@using DMBBootstrapBuilder
+@using DMBComponentBuilder
+@using DMBEffectBuilder
+@using DMBPageBuilder
+@{
+    Layout = "_Layout";
+}
+
+@* ── Hero ── *@
+@using (Html.SectionBuilder().SetHeight(125, UnitSize.px).BootstrapBackgroundEffect(VariantStyle.Normal).Begin())
+{
+    @using (Html.FlexBlockBuilder().SetAlignItemsCenter().SetJustifyContentCenter().Begin())
+    {
+        @using (Html.BlockBuilder().AsTextCenter().Begin())
+        {
+            @Html.TitleBuilder().SetTitle("Architecture — SearchBuilder", TitleLevel.One).Render()
+            @using (Html.PB_P().AsLead().Begin())
+            {
+                @:Crawler, normalizer and database writer.
+            }
+        }
+    }
+}
+
+@using (Html.ContainerBuilder().SetPadding(SpacingSide.Y, SpacingSize.Five).Begin())
+{
+    @using (Html.RowBuilder().Begin())
+    {
+        @using (Html.ColBuilder().SetCol(ColSize.Col12).Begin())
+        {
+            @* ── 1. Module Responsibilities ── *@
+            @Html.TitleBuilder().SetTitle("Module Responsibilities", TitleLevel.Two).AsSectionHeading().Render()
+            @using (Html.PB_P().Begin())
+            {
+                @using (Html.PB_Span().AsBold().Begin())
+                {
+                    @:DMBSearchBuilder
+                }
+                @: is independent from the runtime UI. It receives crawl options, fetches HTML pages, extracts normalized search data and writes the SQLite database consumed later by SearchViewer.
+            }
+            @(Html.CodeBlock(@"Effects/
+  Crawler/     → Resolve URI, walk same-site links
+  Normalizer/  → Accent, case, punctuation, PascalCase
+  Persistence/ → SearchPages + SearchPageTerms tables
+wwwroot/Search/data.db  → Generated output", CodeLanguage.Bash)
+                .SetTitle("Project structure")
+                .SetCopyButton())
+
+            @* ── 2. Stored Data ── *@
+            @Html.TitleBuilder().SetTitle("Stored Data", TitleLevel.Two).AsSubSectionHeading().Render()
+            @using (Html.PB_P().Begin())
+            {
+                @:Every crawled page produces one
+                @using (Html.PB_Span().AsMonospace().Begin())
+                {
+                    @:SearchPages
+                }
+                @: record and many
+                @using (Html.PB_Span().AsMonospace().Begin())
+                {
+                    @:SearchPageTerms
+                }
+                @: rows — one per normalized token with its computed weight.
+            }
+            @(Html.CodeBlock(@"SearchPages
+- Url
+- Title
+- Description
+- Keywords
+- ContentLength
+
+SearchPageTerms
+- PageId
+- Term
+- Weight", CodeLanguage.PlainText)
+                .SetTitle("SQLite schema overview"))
+
+            @* ── 3. Runtime Boundary ── *@
+            @Html.TitleBuilder().SetTitle("Runtime Boundary", TitleLevel.Two).AsSubSectionHeading().Render()
+            @using (Html.PB_P().Begin())
+            {
+                @:SearchBuilder writes relative page URLs. SearchViewer turns those paths into links and display URLs using the current host configuration, which keeps localhost crawling separate from production display.
+            }
+
+            @* ── Tech Stack ── *@
+            @using (Html.BlockBuilder().AsInfoCallout().Begin())
+            {
+                @using (Html.FlexBlockBuilder().Begin())
+                {
+                    @using (Html.BlockBuilder().AsCalloutIcon().Begin())
+                    {
+                        @using (Html.PB_Span().AddClass("bi bi-gear-fill fs-2 text-info").Begin()) { }
+                    }
+                    @using (Html.BlockBuilder().Begin())
+                    {
+                        @Html.TitleBuilder().SetTitle("Tech Stack", TitleLevel.Five).AsAlertHeading().Render()
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsBold().Begin())
+                            {
+                                @:Backend:
+                            }
+                            @: .NET 10 / ASP.NET Core
+                        }
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsBold().Begin())
+                            {
+                                @:Storage:
+                            }
+                            @: SQLite via Microsoft.Data.Sqlite
+                        }
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsBold().Begin())
+                            {
+                                @:Crawling:
+                            }
+                            @: HttpClient + AngleSharp HTML parsing
+                        }
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsBold().Begin())
+                                {
+                                @:Normalization:
+                            }
+                            @: Accent / case / punctuation / PascalCase
+                        }
+                    }
+                }
+            }
+
+            @* ── Next Step ── *@
+            @using (Html.BlockBuilder().AsSidebarNote().Begin())
+            {
+                @using (Html.BlockBuilder().AsTextCenter().Begin())
+                {
+                    @Html.TitleBuilder().SetTitle("See the full pipeline", TitleLevel.Four).Render()
+                    @using (Html.PB_P().AsSmallMuted().Begin())
+                    {
+                        @:Follow each step from launch profile resolution to the final database write.
+                    }
+                    @Html.Button(ActionItemFactory.AspRoute("SearchBuilder", "RenderingPipeline").SetTitle("Rendering Pipeline").SetIcon(IconStruct.Bootstrap("bi-bezier2")).SetVariant(VariantStyle.Primary)).Render()
+                }
+            }
+        }
+    }
+}

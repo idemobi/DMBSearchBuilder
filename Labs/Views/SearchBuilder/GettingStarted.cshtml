@@ -1,0 +1,144 @@
+@using DMBBootstrapBuilder
+@using DMBComponentBuilder
+@using DMBEffectBuilder
+@using DMBPageBuilder
+@{
+    Layout = "_Layout";
+}
+
+@* ── Hero ── *@
+@using (Html.SectionBuilder().SetHeight(125, UnitSize.px).BootstrapBackgroundEffect(VariantStyle.Normal).Begin())
+{
+    @using (Html.FlexBlockBuilder().SetAlignItemsCenter().SetJustifyContentCenter().Begin())
+    {
+        @using (Html.BlockBuilder().AsTextCenter().Begin())
+        {
+            @Html.TitleBuilder().SetTitle("Getting Started — SearchBuilder", TitleLevel.One).Render()
+            @using (Html.PB_P().AsLead().Begin())
+            {
+                @:Build the search database during prebuilding.
+            }
+        }
+    }
+}
+
+@using (Html.ContainerBuilder().SetPadding(SpacingSide.Y, SpacingSize.Five).Begin())
+{
+    @using (Html.RowBuilder().Begin())
+    {
+        @using (Html.ColBuilder().SetCol(ColSize.Col12).Begin())
+        {
+            @* ── Step 1 ── *@
+            @Html.TitleBuilder().SetTitle("1. Add SearchBuilder to the prebuild project", TitleLevel.Two).AsSectionHeading().Render()
+            @using (Html.PB_P().Begin())
+            {
+                @:SearchBuilder belongs in the project that prepares website assets and databases before the website is launched.
+            }
+            @(Html.CodeBlock("dotnet add package DMBSearchBuilder", CodeLanguage.Bash)
+                .SetTitle("Install DMBSearchBuilder")
+                .SetCopyButton())
+
+            @* ── Step 2 ── *@
+            @Html.TitleBuilder().SetTitle("2. Configure the website launch profile", TitleLevel.Two).AsSubSectionHeading().Render()
+            @using (Html.PB_P().Begin())
+            {
+                @:The builder can start the website only when it is not already available. Keep
+                @using (Html.PB_Span().AsMonospace().Begin())
+                {
+                    @:UseNoBuild
+                }
+                @: enabled when the website has already been built, or disable it when prebuilding must tolerate a missing output executable. It stops only the process it started.
+            }
+            @(Html.CodeBlock(@"await new DMBSearchBuilderAgent().BuildFromLaunchProfileAsync(new DMBSearchLaunchProfileBuildOptions
+{
+    ProjectPath = websiteProjectPath,
+    LaunchSettingsPath = websiteLaunchSettingsPath,
+    LaunchProfileName = ""NuGet https"",
+    FallbackLaunchProfileName = ""https"",
+    DatabasePath = Path.Combine(websiteRoot, ""Search"", ""data.db""),
+    MaxPages = 500,
+    PreserveQueryStrings = false,
+    UseNoBuild = false
+});", CodeLanguage.CSharp)
+                .SetTitle("PreBuilding integration")
+                .SetCopyButton())
+
+            @* ── Step 3 ── *@
+            @Html.TitleBuilder().SetTitle("3. Regenerate after content changes", TitleLevel.Two).AsSubSectionHeading().Render()
+            @using (Html.PB_P().Begin())
+            {
+                @:Re-run prebuilding whenever page content, navigation, documentation data or scoring rules change. SearchBuilder will rebuild
+                @using (Html.PB_Span().AsMonospace().Begin())
+                {
+                    @:Search/data.db
+                }
+                @: with normalized and weighted search terms.
+            }
+
+            @* ── Key Options callout ── *@
+            @using (Html.BlockBuilder().AsInfoCallout().Begin())
+            {
+                @using (Html.FlexBlockBuilder().Begin())
+                {
+                    @using (Html.BlockBuilder().AsCalloutIcon().Begin())
+                    {
+                        @using (Html.PB_Span().AddClass("bi bi-gear-fill fs-2 text-info").Begin()) { }
+                    }
+                    @using (Html.BlockBuilder().Begin())
+                    {
+                        @Html.TitleBuilder().SetTitle("Key Options", TitleLevel.Five).AsAlertHeading().Render()
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsMonospaceSmall().Begin())
+                            {
+                                @:LaunchProfileName
+                            }
+                        }
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsMonospaceSmall().Begin())
+                            {
+                                @:DatabasePath
+                            }
+                        }
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsMonospaceSmall().Begin())
+                            {
+                                @:MaxPages
+                            }
+                        }
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsMonospaceSmall().Begin())
+                            {
+                                @:ExcludedPathPrefixes
+                            }
+                        }
+                        @using (Html.BlockBuilder().AsSidebarRow().Begin())
+                        {
+                            @using (Html.PB_Span().AsMonospaceSmall().Begin())
+                            {
+                                @:PreserveQueryStrings
+                            }
+                        }
+                    }
+                }
+            }
+
+            @* ── Next Step ── *@
+            @using (Html.BlockBuilder().AsSidebarNote().Begin())
+            {
+                @using (Html.BlockBuilder().AsTextCenter().Begin())
+                {
+                    @Html.TitleBuilder().SetTitle("Review the crawler architecture and scoring storage", TitleLevel.Four).Render()
+                    @using (Html.PB_P().AsSmallMuted().Begin())
+                    {
+                        @:Understand how SearchBuilder separates the crawler, normalizer and database writer.
+                    }
+                    @Html.Button(ActionItemFactory.AspRoute("SearchBuilder", "Architecture").SetTitle("Architecture").SetIcon(IconStruct.Bootstrap("bi-diagram-3")).SetVariant(VariantStyle.Primary)).Render()
+                }
+            }
+        }
+    }
+}
