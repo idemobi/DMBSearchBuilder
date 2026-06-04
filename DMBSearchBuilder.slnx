@@ -1,0 +1,38 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="NuGet" />
+    <BuildType Name="Release" />
+  </Configurations>
+  <Folder Name="/Source/">
+    <Project Path="Source/Core/DMBSearchCore.csproj" />
+    <Project Path="Source/Builder/DMBSearchBuilder.csproj" />
+    <Project Path="Source/Viewer/DMBSearchViewer.csproj" />
+  </Folder>
+  <Folder Name="/Labs/">
+    <Project Path="Labs/DMBSearchBuilderLabs.csproj">
+      <BuildType Solution="NuGet|*" Project="Debug" />
+    </Project>
+  </Folder>
+  <Folder Name="/Website/">
+    <Project Path="Website/DMBSearchBuilderWebsite.csproj">
+      <BuildType Solution="NuGet|*" Project="Debug" />
+    </Project>
+  </Folder>
+  <Folder Name="/Programs/">
+    <Project Path="Programs/PreBuilding/DMBSearchBuilderPreBuilding.csproj">
+      <BuildType Solution="NuGet|*" Project="Debug" />
+    </Project>
+  </Folder>
+  <Folder Name="/UnitTests/">
+    <Project Path="UnitTests/Core/DMBSearchCoreUnitTest.csproj">
+      <BuildType Solution="NuGet|*" Project="Debug" />
+    </Project>
+    <Project Path="UnitTests/Builder/DMBSearchBuilderUnitTest.csproj">
+      <BuildType Solution="NuGet|*" Project="Debug" />
+    </Project>
+    <Project Path="UnitTests/Viewer/DMBSearchViewerUnitTest.csproj">
+      <BuildType Solution="NuGet|*" Project="Debug" />
+    </Project>
+  </Folder>
+</Solution>
