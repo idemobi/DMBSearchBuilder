@@ -23,8 +23,8 @@
         <PublicSign>true</PublicSign>
         <Configurations>Debug;Release;NuGet</Configurations>
         <Platforms>AnyCPU</Platforms>
-        <Version>0.13.0</Version>
-        <FileVersion>0.13.0.0</FileVersion>
+        <Version>0.13.1</Version>
+        <FileVersion>0.13.1.0</FileVersion>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <Company>idéMobi</Company>
         <Authors>Jean-François CONTART, Quentin BOULOGNE, Camille GOLLIOT</Authors>
@@ -52,7 +52,7 @@
     <Choose>
         <When Condition=" '$(Configuration)' == 'NuGet' ">
             <ItemGroup Label="Case NuGet">
-                <PackageReference Include="DMBSearchCore" Version="0.13.0" />
+                <PackageReference Include="DMBSearchCore" Version="0.13.1" />
             </ItemGroup>
         </When>
         <Otherwise>
