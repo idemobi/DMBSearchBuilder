@@ -60,12 +60,12 @@ public static class DMBSearchBuilderLabsNavigationAgent
     /// <returns>The configured <see cref="GroupActionItem" /> containing Search labs and viewer links.</returns>
     public static GroupActionItem CreateMenuGroup()
     {
-        return ActionItemFactory.Group("Search", IconStruct.Bootstrap("bi-search"))
+        return ActionItemFactory.Group("DMB Search", IconStruct.Bootstrap("bi-search"))
             .AddItems(
-                CreateAction("SearchBuilder", "Introduction", "Builder", "bi-tools"),
-                CreateAction("SearchViewer", "Introduction", "Viewer", "bi-window-sidebar"),
-                CreateAction("Search", "Index", "Local Search", "bi-search-heart"),
-                CreateAction("Search", "Demo", "Search Demo", "bi-stars")
+                CreateAction("SearchBuilder", "Introduction", "DMBSearchBuilder", "bi-tools"),
+                CreateAction("SearchViewer", "Introduction", "DMBSearchViewer", "bi-window-sidebar"),
+                CreateAction("Search", "Index", "DMBSearchViewer Runtime", "bi-search-heart"),
+                CreateAction("Search", "Demo", "DMBSearch Demo", "bi-stars")
             );
     }
 
@@ -121,7 +121,7 @@ public static class DMBSearchBuilderLabsNavigationAgent
     /// <returns>The configured <see cref="SideBarSectionComponent" />.</returns>
     public static SideBarSectionComponent CreateSidebarSection(string? currentController, string? currentAction)
     {
-        return new SideBarSectionComponent("SearchBuilder")
+        return new SideBarSectionComponent("DMBSearchBuilder")
             .Add(ActionItemFactory.Group("Builder", IconStruct.Bootstrap("bi-tools"))
                 .AddItems(
                     CreateAction("SearchBuilder", "Introduction", "Introduction", "bi-info-circle", currentController, currentAction),
@@ -139,7 +139,7 @@ public static class DMBSearchBuilderLabsNavigationAgent
     /// <returns>The configured <see cref="SideBarSectionComponent" />.</returns>
     public static SideBarSectionComponent CreateViewerSidebarSection(string? currentController, string? currentAction)
     {
-        return new SideBarSectionComponent("SearchViewer")
+        return new SideBarSectionComponent("DMBSearchViewer")
             .Add(ActionItemFactory.Group("Viewer", IconStruct.Bootstrap("bi-window-sidebar"))
                 .AddItems(
                     CreateAction("SearchViewer", "Introduction", "Introduction", "bi-info-circle", currentController, currentAction),
@@ -240,9 +240,9 @@ public static class DMBSearchBuilderLabsNavigationAgent
     /// <returns>The display title for the controller.</returns>
     public static string ResolveModuleTitle(string? controller)
     {
-        return string.Equals(controller, "SearchViewer", StringComparison.OrdinalIgnoreCase) ? "SearchViewer" :
-            string.Equals(controller, "Search", StringComparison.OrdinalIgnoreCase) ? "Local Search" :
-            "SearchBuilder";
+        return string.Equals(controller, "SearchViewer", StringComparison.OrdinalIgnoreCase) ? "DMBSearchViewer" :
+            string.Equals(controller, "Search", StringComparison.OrdinalIgnoreCase) ? "DMBSearchViewer Runtime" :
+            "DMBSearchBuilder";
     }
 
     #endregion
