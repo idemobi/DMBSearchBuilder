@@ -20,9 +20,9 @@
         <ProjectReference Include="..\Source\Builder\DMBSearchBuilder.csproj" />
         <ProjectReference Include="..\Source\Core\DMBSearchCore.csproj" />
         <ProjectReference Include="..\Source\Viewer\DMBSearchViewer.csproj" />
-        <PackageReference Include="DMBBootstrapBuilder" Version="0.17.0" />
-        <PackageReference Include="DMBComponentBuilder" Version="0.17.0" />
-        <PackageReference Include="DMBEffectBuilder" Version="0.17.0" />
-        <PackageReference Include="DMBPageBuilder" Version="0.17.0" />
+        <PackageReference Include="DMBBootstrapBuilder" Version="0.18.0-preview.1" />
+        <PackageReference Include="DMBComponentBuilder" Version="0.18.0-preview.1" />
+        <PackageReference Include="DMBEffectBuilder" Version="0.18.0-preview.1" />
+        <PackageReference Include="DMBPageBuilder" Version="0.18.0-preview.1" />
     </ItemGroup>
 </Project>
