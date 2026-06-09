@@ -7,7 +7,6 @@
 
 #region
 
-using System;
 using DMBBootstrapBuilder;
 using DMBPageBuilder;
 
@@ -35,7 +34,7 @@ public static class DMBSearchBuilderLabsNavigationAgent
     /// <param name="icon">The Bootstrap Icons CSS class used by the action.</param>
     /// <param name="currentController">The current MVC controller name used to mark the action active.</param>
     /// <param name="currentAction">The current MVC action name used to mark the action active.</param>
-    /// <returns>The configured <see cref="AspRouteActionItem"/>.</returns>
+    /// <returns>The configured <see cref="AspRouteActionItem" />.</returns>
     public static AspRouteActionItem CreateAction(
         string controller,
         string action,
@@ -58,7 +57,7 @@ public static class DMBSearchBuilderLabsNavigationAgent
     /// <summary>
     ///     Creates the DMBSearchBuilder navbar menu group.
     /// </summary>
-    /// <returns>The configured <see cref="GroupActionItem"/> containing Search labs and viewer links.</returns>
+    /// <returns>The configured <see cref="GroupActionItem" /> containing Search labs and viewer links.</returns>
     public static GroupActionItem CreateMenuGroup()
     {
         return ActionItemFactory.Group("Search", IconStruct.Bootstrap("bi-search"))
@@ -71,47 +70,11 @@ public static class DMBSearchBuilderLabsNavigationAgent
     }
 
     /// <summary>
-    ///     Creates the DMBSearchBuilder labs sidebar section.
-    /// </summary>
-    /// <param name="currentController">The current MVC controller name used to mark the active item.</param>
-    /// <param name="currentAction">The current MVC action name used to mark the active item.</param>
-    /// <returns>The configured <see cref="SideBarSectionComponent"/>.</returns>
-    public static SideBarSectionComponent CreateSidebarSection(string? currentController, string? currentAction)
-    {
-        return new SideBarSectionComponent("SearchBuilder")
-            .Add(ActionItemFactory.Group("Builder", IconStruct.Bootstrap("bi-tools"))
-                .AddItems(
-                    CreateAction("SearchBuilder", "Introduction", "Introduction", "bi-info-circle", currentController, currentAction),
-                    CreateAction("SearchBuilder", "GettingStarted", "Getting Started", "bi-play-circle", currentController, currentAction),
-                    CreateAction("SearchBuilder", "Architecture", "Architecture", "bi-diagram-3", currentController, currentAction),
-                    CreateAction("SearchBuilder", "RenderingPipeline", "Rendering Pipeline", "bi-bezier2", currentController, currentAction)
-                ));
-    }
-
-    /// <summary>
-    ///     Creates the DMBSearchViewer labs sidebar section.
-    /// </summary>
-    /// <param name="currentController">The current MVC controller name used to mark the active item.</param>
-    /// <param name="currentAction">The current MVC action name used to mark the active item.</param>
-    /// <returns>The configured <see cref="SideBarSectionComponent"/>.</returns>
-    public static SideBarSectionComponent CreateViewerSidebarSection(string? currentController, string? currentAction)
-    {
-        return new SideBarSectionComponent("SearchViewer")
-            .Add(ActionItemFactory.Group("Viewer", IconStruct.Bootstrap("bi-window-sidebar"))
-                .AddItems(
-                    CreateAction("SearchViewer", "Introduction", "Introduction", "bi-info-circle", currentController, currentAction),
-                    CreateAction("SearchViewer", "GettingStarted", "Getting Started", "bi-play-circle", currentController, currentAction),
-                    CreateAction("SearchViewer", "Architecture", "Architecture", "bi-diagram-3", currentController, currentAction),
-                    CreateAction("SearchViewer", "RenderingPipeline", "Rendering Pipeline", "bi-bezier2", currentController, currentAction)
-                ));
-    }
-
-    /// <summary>
     ///     Creates the local DMBSearchViewer runtime sidebar section.
     /// </summary>
     /// <param name="currentController">The current MVC controller name used to mark the active item.</param>
     /// <param name="currentAction">The current MVC action name used to mark the active item.</param>
-    /// <returns>The configured <see cref="SideBarSectionComponent"/>.</returns>
+    /// <returns>The configured <see cref="SideBarSectionComponent" />.</returns>
     public static SideBarSectionComponent CreateSearchSidebarSection(string? currentController, string? currentAction)
     {
         return new SideBarSectionComponent("Local Search")
@@ -129,7 +92,7 @@ public static class DMBSearchBuilderLabsNavigationAgent
     /// <param name="currentAction">The current MVC action name used to mark the active item.</param>
     /// <param name="sidebarId">The HTML identifier applied to the sidebar component.</param>
     /// <param name="localStorageKey">The browser local-storage key used for sidebar state.</param>
-    /// <returns>The configured <see cref="SideBarComponent"/>.</returns>
+    /// <returns>The configured <see cref="SideBarComponent" />.</returns>
     public static SideBarComponent CreateSidebar(
         string? currentController,
         string? currentAction,
@@ -151,6 +114,42 @@ public static class DMBSearchBuilderLabsNavigationAgent
     }
 
     /// <summary>
+    ///     Creates the DMBSearchBuilder labs sidebar section.
+    /// </summary>
+    /// <param name="currentController">The current MVC controller name used to mark the active item.</param>
+    /// <param name="currentAction">The current MVC action name used to mark the active item.</param>
+    /// <returns>The configured <see cref="SideBarSectionComponent" />.</returns>
+    public static SideBarSectionComponent CreateSidebarSection(string? currentController, string? currentAction)
+    {
+        return new SideBarSectionComponent("SearchBuilder")
+            .Add(ActionItemFactory.Group("Builder", IconStruct.Bootstrap("bi-tools"))
+                .AddItems(
+                    CreateAction("SearchBuilder", "Introduction", "Introduction", "bi-info-circle", currentController, currentAction),
+                    CreateAction("SearchBuilder", "GettingStarted", "Getting Started", "bi-play-circle", currentController, currentAction),
+                    CreateAction("SearchBuilder", "Architecture", "Architecture", "bi-diagram-3", currentController, currentAction),
+                    CreateAction("SearchBuilder", "RenderingPipeline", "Rendering Pipeline", "bi-bezier2", currentController, currentAction)
+                ));
+    }
+
+    /// <summary>
+    ///     Creates the DMBSearchViewer labs sidebar section.
+    /// </summary>
+    /// <param name="currentController">The current MVC controller name used to mark the active item.</param>
+    /// <param name="currentAction">The current MVC action name used to mark the active item.</param>
+    /// <returns>The configured <see cref="SideBarSectionComponent" />.</returns>
+    public static SideBarSectionComponent CreateViewerSidebarSection(string? currentController, string? currentAction)
+    {
+        return new SideBarSectionComponent("SearchViewer")
+            .Add(ActionItemFactory.Group("Viewer", IconStruct.Bootstrap("bi-window-sidebar"))
+                .AddItems(
+                    CreateAction("SearchViewer", "Introduction", "Introduction", "bi-info-circle", currentController, currentAction),
+                    CreateAction("SearchViewer", "GettingStarted", "Getting Started", "bi-play-circle", currentController, currentAction),
+                    CreateAction("SearchViewer", "Architecture", "Architecture", "bi-diagram-3", currentController, currentAction),
+                    CreateAction("SearchViewer", "RenderingPipeline", "Rendering Pipeline", "bi-bezier2", currentController, currentAction)
+                ));
+    }
+
+    /// <summary>
     ///     Determines whether a controller belongs to the DMBSearchBuilder labs navigation.
     /// </summary>
     /// <param name="controller">The MVC controller name to inspect.</param>
@@ -163,33 +162,11 @@ public static class DMBSearchBuilderLabsNavigationAgent
     }
 
     /// <summary>
-    ///     Resolves the default action for a DMBSearchBuilder labs controller.
-    /// </summary>
-    /// <param name="controller">The MVC controller name to resolve.</param>
-    /// <returns>The default action name for the controller.</returns>
-    public static string ResolveModuleDefaultAction(string? controller)
-    {
-        return string.Equals(controller, "Search", StringComparison.OrdinalIgnoreCase) ? "Index" : "Introduction";
-    }
-
-    /// <summary>
-    ///     Resolves the default controller for a DMBSearchBuilder labs route.
-    /// </summary>
-    /// <param name="controller">The MVC controller name to resolve.</param>
-    /// <returns>The normalized controller name used for routing.</returns>
-    public static string ResolveModuleController(string? controller)
-    {
-        return string.Equals(controller, "SearchViewer", StringComparison.OrdinalIgnoreCase) ? "SearchViewer" :
-            string.Equals(controller, "Search", StringComparison.OrdinalIgnoreCase) ? "Search" :
-            "SearchBuilder";
-    }
-
-    /// <summary>
     ///     Resolves the Bootstrap icon for a DMBSearchBuilder labs action.
     /// </summary>
     /// <param name="controller">The MVC controller name to resolve.</param>
     /// <param name="actionName">The MVC action name to resolve.</param>
-    /// <returns>The icon value represented as an <see cref="IconStruct"/>.</returns>
+    /// <returns>The icon value represented as an <see cref="IconStruct" />.</returns>
     public static IconStruct ResolveActionIcon(string? controller, string? actionName)
     {
         return actionName switch
@@ -223,6 +200,40 @@ public static class DMBSearchBuilderLabsNavigationAgent
     }
 
     /// <summary>
+    ///     Resolves the default controller for a DMBSearchBuilder labs route.
+    /// </summary>
+    /// <param name="controller">The MVC controller name to resolve.</param>
+    /// <returns>The normalized controller name used for routing.</returns>
+    public static string ResolveModuleController(string? controller)
+    {
+        return string.Equals(controller, "SearchViewer", StringComparison.OrdinalIgnoreCase) ? "SearchViewer" :
+            string.Equals(controller, "Search", StringComparison.OrdinalIgnoreCase) ? "Search" :
+            "SearchBuilder";
+    }
+
+    /// <summary>
+    ///     Resolves the default action for a DMBSearchBuilder labs controller.
+    /// </summary>
+    /// <param name="controller">The MVC controller name to resolve.</param>
+    /// <returns>The default action name for the controller.</returns>
+    public static string ResolveModuleDefaultAction(string? controller)
+    {
+        return string.Equals(controller, "Search", StringComparison.OrdinalIgnoreCase) ? "Index" : "Introduction";
+    }
+
+    /// <summary>
+    ///     Resolves the Bootstrap icon for a DMBSearchBuilder labs controller.
+    /// </summary>
+    /// <param name="controller">The MVC controller name to resolve.</param>
+    /// <returns>The icon value represented as an <see cref="IconStruct" />.</returns>
+    public static IconStruct ResolveModuleIcon(string? controller)
+    {
+        return string.Equals(controller, "SearchViewer", StringComparison.OrdinalIgnoreCase) ? IconStruct.Bootstrap("bi-window-sidebar") :
+            string.Equals(controller, "Search", StringComparison.OrdinalIgnoreCase) ? IconStruct.Bootstrap("bi-search-heart") :
+            IconStruct.Bootstrap("bi-tools");
+    }
+
+    /// <summary>
     ///     Resolves the display title for a DMBSearchBuilder labs controller.
     /// </summary>
     /// <param name="controller">The MVC controller name to resolve.</param>
@@ -232,18 +243,6 @@ public static class DMBSearchBuilderLabsNavigationAgent
         return string.Equals(controller, "SearchViewer", StringComparison.OrdinalIgnoreCase) ? "SearchViewer" :
             string.Equals(controller, "Search", StringComparison.OrdinalIgnoreCase) ? "Local Search" :
             "SearchBuilder";
-    }
-
-    /// <summary>
-    ///     Resolves the Bootstrap icon for a DMBSearchBuilder labs controller.
-    /// </summary>
-    /// <param name="controller">The MVC controller name to resolve.</param>
-    /// <returns>The icon value represented as an <see cref="IconStruct"/>.</returns>
-    public static IconStruct ResolveModuleIcon(string? controller)
-    {
-        return string.Equals(controller, "SearchViewer", StringComparison.OrdinalIgnoreCase) ? IconStruct.Bootstrap("bi-window-sidebar") :
-            string.Equals(controller, "Search", StringComparison.OrdinalIgnoreCase) ? IconStruct.Bootstrap("bi-search-heart") :
-            IconStruct.Bootstrap("bi-tools");
     }
 
     #endregion

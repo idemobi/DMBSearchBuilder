@@ -7,8 +7,6 @@
 
 #region
 
-using System;
-using System.IO;
 using DMBSearchBuilder;
 using Microsoft.Data.Sqlite;
 using NUnit.Framework;

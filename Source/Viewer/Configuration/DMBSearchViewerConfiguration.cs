@@ -7,7 +7,6 @@
 
 #region
 
-using System;
 using DMBBootstrapBuilder;
 using DMBSearchViewer.Resources;
 using DMBServerWebHelper;
