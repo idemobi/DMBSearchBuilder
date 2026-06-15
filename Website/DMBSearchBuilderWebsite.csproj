@@ -18,18 +18,33 @@
         <ProjectReference Include="..\Source\Viewer\DMBSearchViewer.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="DMBBootstrapBuilder" Version="0.22.0" />
-        <PackageReference Include="DMBComponentBuilder" Version="0.22.0" />
-        <PackageReference Include="DMBEffectBuilder" Version="0.22.0" />
-        <PackageReference Include="DMBPageBuilder" Version="0.22.0" />
-        <PackageReference Include="DMBServerHelper" Version="0.22.0" />
-        <PackageReference Include="DMBServerWebHelper" Version="0.22.0" />
-    </ItemGroup>
 
     <ItemGroup>
         <None Update="Search\data.db">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
+
+    <Choose>
+        <When Condition=" '$(Configuration)' == 'Release' ">
+            <ItemGroup Label="Case Release">
+                <PackageReference Include="DMBBootstrapBuilder" Version="0.23.0" />
+                <PackageReference Include="DMBComponentBuilder" Version="0.23.0" />
+                <PackageReference Include="DMBEffectBuilder" Version="0.23.0" />
+                <PackageReference Include="DMBPageBuilder" Version="0.23.0" />
+                <PackageReference Include="DMBServerHelper" Version="0.23.0" />
+                <PackageReference Include="DMBServerWebHelper" Version="0.23.0" />
+            </ItemGroup>
+        </When>
+        <Otherwise>
+            <ItemGroup Label="Case Debug">
+                <ProjectReference Include="..\..\DMBBootstrapBuilder\Source\DMBBootstrapBuilder.csproj" />
+                <ProjectReference Include="..\..\DMBComponentBuilder\Source\DMBComponentBuilder.csproj" />
+                <ProjectReference Include="..\..\DMBEffectBuilder\Source\DMBEffectBuilder.csproj" />
+                <ProjectReference Include="..\..\DMBPageBuilder\Source\DMBPageBuilder.csproj" />
+                <ProjectReference Include="..\..\DMBServerHelper\Source\DMBServerHelper.csproj" />
+                <ProjectReference Include="..\..\DMBServerWebHelper\Source\DMBServerWebHelper.csproj" />
+            </ItemGroup>
+        </Otherwise>
+    </Choose>
 </Project>
