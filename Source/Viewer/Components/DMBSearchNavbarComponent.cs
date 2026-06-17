@@ -42,7 +42,7 @@ namespace DMBSearchViewer
             return new HtmlString($"""
                                    <form class="d-flex align-items-center dmb-search-navbar" method="get" action="{WebUtility.HtmlEncode(actionUrl)}" role="search">
                                        <label class="visually-hidden" for="dmb-search-navbar-term">{WebUtility.HtmlEncode(label)}</label>
-                                       <input id="dmb-search-navbar-term" class="form-control form-control-sm" type="search" name="term" value="{WebUtility.HtmlEncode(currentTerm)}" placeholder="{WebUtility.HtmlEncode(placeholder)}" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" />
+                                       <input id="dmb-search-navbar-term" class="form-control form-control-sm py-0 lh-sm" style="height: 1.65rem; min-height: 1.65rem;" type="search" name="term" value="{WebUtility.HtmlEncode(currentTerm)}" placeholder="{WebUtility.HtmlEncode(placeholder)}" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" />
                                    </form>
                                    """);
         }
