@@ -19,7 +19,7 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 
 - Project name: `DMBSearchViewer`
 - Primary API families: search controller, navbar component, provider contracts, composite search agent, SearchBuilder provider, DocumentationViewer provider, path resolver, configuration, query models, result models, response models, provider errors, and embedded views.
-- Important types to reference when relevant: `SearchController`, `DMBSearchNavbarComponent`, `IDMBSearchProvider`, `DMBSearchCompositeAgent`, `DMBSearchBuilderSearchProvider`, `DMBDocumentationViewerSearchProvider`, `DMBSearchPathResolver`, `DMBSearchViewerConfiguration`, `DMBSearchQuery`, `DMBSearchResult`, `DMBSearchResponse`, `DMBSearchProviderError`, and `DMBSearchPageViewModel`.
+- Important types to reference when relevant: `SearchController`, `DMBSearchNavbarComponent`, `IDMBSearchProvider`, `DMBSearchCompositeAgent`, `DMBSearchBuilderSearchProvider`, `DMBDocumentationViewerSearchProvider`, `DMBSearchPathResolver`, `SearchViewerConfiguration`, `DMBSearchQuery`, `DMBSearchResult`, `DMBSearchResponse`, `DMBSearchProviderError`, and `DMBSearchPageViewModel`.
 - Publication host: `labs_idemobi_com`
 - Documentation generation strategy: DocumentationBuilder-first; AI prepares content, the developer executes generation.
 
@@ -68,7 +68,7 @@ For properties, fields, and constants, document:
 
 Use `<example>` when it materially improves understanding of:
 
-- registering `DMBSearchViewerConfiguration`,
+- registering `SearchViewerConfiguration`,
 - implementing `IDMBSearchProvider`,
 - querying through `DMBSearchCompositeAgent`,
 - using `DMBSearchQuery`,

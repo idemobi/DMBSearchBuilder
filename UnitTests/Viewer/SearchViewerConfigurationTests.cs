@@ -15,12 +15,12 @@ using NUnit.Framework;
 namespace DMBSearchViewerUnitTest;
 
 [TestFixture]
-public sealed class DMBSearchViewerConfigurationTests
+public sealed class SearchViewerConfigurationTests
 {
     [Test]
     public void ConfigurationDoesNotRequireApiDescriptionOrExternalConfig()
     {
-        DMBSearchViewerConfiguration configuration = new();
+        SearchViewerConfiguration configuration = new();
 
         Assert.Multiple(() =>
         {

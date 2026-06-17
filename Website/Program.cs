@@ -28,7 +28,7 @@ PageBuilderConfiguration.LoadCommonConfig(builder);
 BootstrapBuilderConfiguration.LoadCommonConfig(builder);
 ComponentBuilderConfiguration.LoadCommonConfig(builder);
 EffectBuilderConfiguration.LoadCommonConfig(builder);
-DMBSearchViewerConfiguration.LoadCommonConfig(builder);
+SearchViewerConfiguration.LoadCommonConfig(builder);
 
 var mvcBuilder = builder.Services.AddControllersWithViews();
 mvcBuilder.AddApplicationPart(typeof(SearchBuilderController).Assembly);
@@ -45,7 +45,7 @@ WebApplication app = builder.Build();
 app.UseHttpsRedirection();
 
 ServerWebHelperConfiguration.UseApp(app);
-DMBSearchViewerConfiguration.UseApp(app);
+SearchViewerConfiguration.UseApp(app);
 
 app.MapGet("/", context =>
 {

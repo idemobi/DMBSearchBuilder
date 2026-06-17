@@ -42,7 +42,7 @@
             }
             @(Html.CodeBlock(@"using DMBSearchViewer;
 
-DMBSearchViewerConfiguration.LoadCommonConfig(builder);", CodeLanguage.CSharp)
+SearchViewerConfiguration.LoadCommonConfig(builder);", CodeLanguage.CSharp)
                 .SetTitle("Program.cs — services")
                 .SetCopyButton())
 
@@ -59,7 +59,7 @@ DMBSearchViewerConfiguration.LoadCommonConfig(builder);", CodeLanguage.CSharp)
             }
             @(Html.CodeBlock(@"WebApplication app = builder.Build();
 
-DMBSearchViewerConfiguration.UseApp(app);", CodeLanguage.CSharp)
+SearchViewerConfiguration.UseApp(app);", CodeLanguage.CSharp)
                 .SetTitle("Program.cs — middleware")
                 .SetCopyButton())
 

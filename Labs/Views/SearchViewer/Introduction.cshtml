@@ -142,8 +142,8 @@
             {
                 @using (Html.BlockBuilder().AsPaddedBlock().Begin())
                 {
-                    @(Html.CodeBlock(@"DMBSearchViewerConfiguration.LoadCommonConfig(builder);
-DMBSearchViewerConfiguration.UseApp(app);", CodeLanguage.CSharp)
+                    @(Html.CodeBlock(@"SearchViewerConfiguration.LoadCommonConfig(builder);
+SearchViewerConfiguration.UseApp(app);", CodeLanguage.CSharp)
                         .SetCopyButton())
                     @using (Html.PB_P().AsSmallMuted().AsNoMargin().Begin())
                     {

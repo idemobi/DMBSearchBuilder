@@ -23,7 +23,7 @@ namespace DMBSearchViewer
     ///     Configures DMBSearchViewer services for a host web application.
     /// </summary>
     [Serializable]
-    public class DMBSearchViewerConfiguration : WebGenericConfiguration<DMBSearchViewerConfiguration>, IServerWebConfig
+    public class SearchViewerConfiguration : WebGenericConfiguration<SearchViewerConfiguration>, IServerWebConfig
     {
         #region Static methods
 

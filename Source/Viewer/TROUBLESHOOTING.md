@@ -25,7 +25,7 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 
 ## Navbar search is missing
 
-1. Confirm `DMBSearchViewerConfiguration` is registered by the host.
+1. Confirm `SearchViewerConfiguration` is registered by the host.
 2. Confirm navbar/profile bar integration is active.
 3. Check localization keys for placeholder, labels, and actions.
 4. Confirm static assets are available when the component depends on them.

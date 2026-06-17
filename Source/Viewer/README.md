@@ -13,8 +13,8 @@ cover the generated DMBSearchBuilder database and the DMBDocumentationViewer dat
 ## Example
 
 ```csharp
-DMBSearchViewerConfiguration.LoadCommonConfig(builder);
-DMBSearchViewerConfiguration.UseApp(app);
+SearchViewerConfiguration.LoadCommonConfig(builder);
+SearchViewerConfiguration.UseApp(app);
 ```
 
 ## Notes
