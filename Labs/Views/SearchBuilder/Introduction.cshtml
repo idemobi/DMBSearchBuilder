@@ -147,7 +147,7 @@
             {
                 @using (Html.BlockBuilder().AsPaddedBlock().Begin())
                 {
-                    @(Html.CodeBlock(@"await new DMBSearchBuilderAgent()
+                    @(Html.CodeBlock(@"await new SearchBuilderAgent()
     .BuildFromLaunchProfileAsync(options);", CodeLanguage.CSharp)
                         .SetCopyButton())
                     @using (Html.PB_P().AsSmallMuted().AsNoMargin().Begin())
@@ -188,7 +188,7 @@
                 }
                 @using (Html.PB_Span().AsMonospaceSmall().Begin())
                 {
-                    @:DMBSearchBuilderAgent
+                    @:SearchBuilderAgent
                 }
             }
         }

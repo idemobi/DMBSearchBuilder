@@ -19,7 +19,7 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 
 - Project name: `DMBSearchViewer`
 - Primary API families: search controller, navbar component, provider contracts, composite search agent, SearchBuilder provider, DocumentationViewer provider, path resolver, configuration, query models, result models, response models, provider errors, and embedded views.
-- Important types to reference when relevant: `SearchController`, `DMBSearchNavbarComponent`, `IDMBSearchProvider`, `DMBSearchCompositeAgent`, `DMBSearchBuilderSearchProvider`, `DMBDocumentationViewerSearchProvider`, `DMBSearchPathResolver`, `SearchViewerConfiguration`, `DMBSearchQuery`, `DMBSearchResult`, `DMBSearchResponse`, `DMBSearchProviderError`, and `DMBSearchPageViewModel`.
+- Important types to reference when relevant: `SearchController`, `SearchNavbarComponent`, `ISearchProvider`, `SearchCompositeAgent`, `SearchBuilderSearchProvider`, `DocumentationViewerSearchProvider`, `SearchPathResolver`, `SearchViewerConfiguration`, `SearchQuery`, `SearchResult`, `SearchResponse`, `SearchProviderError`, and `SearchPageViewModel`.
 - Publication host: `labs_idemobi_com`
 - Documentation generation strategy: DocumentationBuilder-first; AI prepares content, the developer executes generation.
 
@@ -37,7 +37,7 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 For classes and interfaces, document:
 
 - the type's role in search routing, provider querying, navbar rendering, result aggregation, path resolution, or configuration,
-- the relationship with important types such as `IDMBSearchProvider`, `DMBSearchCompositeAgent`, `SearchController`, and search result models,
+- the relationship with important types such as `ISearchProvider`, `SearchCompositeAgent`, `SearchController`, and search result models,
 - lifecycle expectations, including whether the type is called by MVC, the host application, a Razor view, or another provider.
 
 For methods and constructors, document:
@@ -69,9 +69,9 @@ For properties, fields, and constants, document:
 Use `<example>` when it materially improves understanding of:
 
 - registering `SearchViewerConfiguration`,
-- implementing `IDMBSearchProvider`,
-- querying through `DMBSearchCompositeAgent`,
-- using `DMBSearchQuery`,
+- implementing `ISearchProvider`,
+- querying through `SearchCompositeAgent`,
+- using `SearchQuery`,
 - rendering or configuring navbar search behavior.
 
 Examples must be short, realistic, and compile-oriented.

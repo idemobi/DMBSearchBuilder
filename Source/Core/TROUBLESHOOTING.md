@@ -10,7 +10,7 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 ## Search results differ between builder and viewer
 
 - Confirm both packages reference the same `DMBSearchCore` version.
-- Confirm provider code uses `DMBSearchTextNormalizer` from `DMBSearchCore`.
+- Confirm provider code uses `SearchTextNormalizer` from `DMBSearchCore`.
 - Rebuild and regenerate the search index after normalization changes.
 
 ## A technical name does not match compact queries
@@ -21,7 +21,7 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 
 ## A new provider copies normalization logic
 
-- Replace copied logic with `DMBSearchCore.DMBSearchTextNormalizer`.
+- Replace copied logic with `DMBSearchCore.SearchTextNormalizer`.
 - Keep provider-specific ranking outside core unless it becomes a shared contract.
 
 ## Package restore or signing issues

@@ -70,7 +70,7 @@ SearchViewerConfiguration.UseApp(app);", CodeLanguage.CSharp)
                 @:Register providers or use the built-in providers for SearchBuilder and DocumentationViewer. Each provider returns
                 @using (Html.PB_Span().AsMonospace().Begin())
                 {
-                    @:DMBSearchResult
+                    @:SearchResult
                 }
                 @: objects with a final
                 @using (Html.PB_Span().AsMonospace().Begin())
@@ -96,21 +96,21 @@ SearchViewerConfiguration.UseApp(app);", CodeLanguage.CSharp)
                         {
                             @using (Html.PB_Span().AsMonospaceSmall().Begin())
                             {
-                                @:DMBSearchNavbarComponent
+                                @:SearchNavbarComponent
                             }
                         }
                         @using (Html.BlockBuilder().AsSidebarRow().Begin())
                         {
                             @using (Html.PB_Span().AsMonospaceSmall().Begin())
                             {
-                                @:DMBSearchCompositeAgent
+                                @:SearchCompositeAgent
                             }
                         }
                         @using (Html.BlockBuilder().AsSidebarRow().Begin())
                         {
                             @using (Html.PB_Span().AsMonospaceSmall().Begin())
                             {
-                                @:IDMBSearchProvider
+                                @:ISearchProvider
                             }
                         }
                         @using (Html.BlockBuilder().AsSidebarRow().Begin())

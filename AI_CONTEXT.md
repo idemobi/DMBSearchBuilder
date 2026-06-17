@@ -15,7 +15,7 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 - Primary consumers: `PreBuilding`, `labs_idemobi_com`, and `DMBSearchViewer`.
 - Main documentation target: DocumentationBuilder output rendered in `labs_idemobi_com`.
 - Main source inputs: target website pages, crawl options, excluded path prefixes, launch profile options, and generated page content.
-- Main output: `DMBSearchPageRecord` rows stored in the configured SQLite database.
+- Main output: `SearchPageRecord` rows stored in the configured SQLite database.
 
 ## Important behavior
 

@@ -45,7 +45,7 @@
                 }
                 @: enabled when the website has already been built, or disable it when prebuilding must tolerate a missing output executable. It stops only the process it started.
             }
-            @(Html.CodeBlock(@"await new DMBSearchBuilderAgent().BuildFromLaunchProfileAsync(new DMBSearchLaunchProfileBuildOptions
+            @(Html.CodeBlock(@"await new SearchBuilderAgent().BuildFromLaunchProfileAsync(new SearchLaunchProfileBuildOptions
 {
     ProjectPath = websiteProjectPath,
     LaunchSettingsPath = websiteLaunchSettingsPath,

@@ -42,7 +42,7 @@
                 @:Implement
                 @using (Html.PB_Span().AsMonospace().Begin())
                 {
-                    @:IDMBSearchProvider
+                    @:ISearchProvider
                 }
                 @: to plug any data source into the viewer. The composite agent calls all registered providers, isolates errors and sorts merged results by
                 @using (Html.PB_Span().AsMonospace().Begin())
@@ -51,12 +51,12 @@
                 }
                 @:.
             }
-            @(Html.CodeBlock(@"public interface IDMBSearchProvider
+            @(Html.CodeBlock(@"public interface ISearchProvider
 {
     string Name { get; }
 
-    Task<IReadOnlyList<DMBSearchResult>> SearchAsync(
-        DMBSearchQuery query,
+    Task<IReadOnlyList<SearchResult>> SearchAsync(
+        SearchQuery query,
         CancellationToken cancellationToken);
 }", CodeLanguage.CSharp)
                 .SetTitle("Search provider API")
@@ -68,7 +68,7 @@
             {
                 @using (Html.PB_Span().AsMonospace().Begin())
                 {
-                    @:DMBSearchBuilderSearchProvider
+                    @:SearchBuilderSearchProvider
                 }
                 @: searches the generated site crawl database.
             }
@@ -76,7 +76,7 @@
             {
                 @using (Html.PB_Span().AsMonospace().Begin())
                 {
-                    @:DMBDocumentationViewerSearchProvider
+                    @:DocumentationViewerSearchProvider
                 }
                 @: searches generated documentation objects.
             }

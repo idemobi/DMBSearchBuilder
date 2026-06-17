@@ -52,15 +52,15 @@ namespace DMBSearchViewer
         /// <param name="configRoot">The resolved configuration root supplied by the host pipeline.</param>
         public override void AfterConfiguration(IHostApplicationBuilder appBuilder, IConfigurationBuilder configBuilder, IConfigurationRoot configRoot)
         {
-            appBuilder.Services.Configure<DMBSearchViewerOptions>(configRoot.GetSection("DMBSearchViewer"));
-            appBuilder.Services.AddTransient<IProfileBarSectionProvider, DMBSearchNavbarProfileBarSectionProvider>();
-            appBuilder.Services.AddTransient<IDMBSearchProvider, DMBSearchBuilderSearchProvider>();
-            appBuilder.Services.AddTransient<IDMBSearchProvider, DMBDocumentationViewerSearchProvider>();
-            appBuilder.Services.AddTransient<DMBSearchCompositeAgent>();
+            appBuilder.Services.Configure<SearchViewerOptions>(configRoot.GetSection("DMBSearchViewer"));
+            appBuilder.Services.AddTransient<IProfileBarSectionProvider, SearchNavbarProfileBarSectionProvider>();
+            appBuilder.Services.AddTransient<ISearchProvider, SearchBuilderSearchProvider>();
+            appBuilder.Services.AddTransient<ISearchProvider, DocumentationViewerSearchProvider>();
+            appBuilder.Services.AddTransient<SearchCompositeAgent>();
             AddAnnotationLocalization(
                 appBuilder,
-                typeof(DMBSearchViewerDataAnnotationLocalization),
-                typeof(DMBSearchViewerInternalLocalization));
+                typeof(SearchViewerDataAnnotationLocalization),
+                typeof(SearchViewerInternalLocalization));
         }
 
         /// <summary>

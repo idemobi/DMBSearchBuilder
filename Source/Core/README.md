@@ -2,7 +2,7 @@
 
 DMBSearchCore contains shared search primitives used by DMB search packages.
 
-The first shared primitive is `DMBSearchTextNormalizer`, which keeps indexing and query matching consistent across builders, viewers, and future search providers.
+The first shared primitive is `SearchTextNormalizer`, which keeps indexing and query matching consistent across builders, viewers, and future search providers.
 
 ## Current Scope
 

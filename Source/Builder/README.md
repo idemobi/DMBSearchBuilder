@@ -17,7 +17,7 @@ documentation database through its dedicated DMBDocumentationViewer provider. It
 ## Example
 
 ```csharp
-await new DMBSearchBuilderAgent().BuildAsync(new DMBSearchBuildOptions
+await new SearchBuilderAgent().BuildAsync(new SearchBuildOptions
 {
     BaseUri = new Uri("http://localhost:5000/"),
     DatabasePath = "Search/data.db",

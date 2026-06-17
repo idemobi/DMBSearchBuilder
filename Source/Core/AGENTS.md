@@ -12,7 +12,7 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 - Project name: `DMBSearchCore`
 - Project folder: `DMBSearchBuilder/Source/Core`
 - Project role: shared search primitives for builders, viewers, and future search providers.
-- Primary consumers: `DMBSearchBuilder`, `DMBSearchViewer`, and future `IDMBSearchProvider` implementations.
+- Primary consumers: `DMBSearchBuilder`, `DMBSearchViewer`, and future `ISearchProvider` implementations.
 - Publication host: `labs_idemobi_com`
 - Documentation generation strategy: DocumentationBuilder-first; AI prepares content, the developer executes generation.
 

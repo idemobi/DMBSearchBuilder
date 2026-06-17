@@ -18,7 +18,7 @@ Generated SQLite database containing page URLs, titles, descriptions, and keywor
 
 ## Page Record
 
-Stored representation of one crawled page, usually modeled by `DMBSearchPageRecord`.
+Stored representation of one crawled page, usually modeled by `SearchPageRecord`.
 
 ## Crawl Scope
 

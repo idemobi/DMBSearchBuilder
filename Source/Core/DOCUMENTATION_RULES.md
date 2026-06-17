@@ -14,7 +14,7 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 - Write XML documentation in English.
 - Public classes, public methods, public constructors, public properties, public fields, public constants, public enums, public enum values, and public delegates must have useful XML documentation.
 - Prefer `<summary>`, `<param>`, `<returns>`, `<remarks>`, `<exception>`, `<see cref="..."/>`, and `<seealso cref="..."/>`.
-- Use `<see cref="DMBSearchTextNormalizer"/>` for local references when helpful.
+- Use `<see cref="SearchTextNormalizer"/>` for local references when helpful.
 - Keep comments focused on behavior and contracts, not implementation narration.
 
 ## Content requirements

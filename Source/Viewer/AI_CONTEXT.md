@@ -12,17 +12,17 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 
 - Project name: `DMBSearchViewer`
 - Project role: search controller, navbar component, provider aggregation, result models, path resolution, and search page rendering.
-- Primary consumers: `labs_idemobi_com`, host MVC applications, and packages that expose `IDMBSearchProvider`.
+- Primary consumers: `labs_idemobi_com`, host MVC applications, and packages that expose `ISearchProvider`.
 - Main source inputs: query text, generated `DMBSearchBuilder` database records, documentation provider results, configured providers, and route values.
 - Main output: rendered search pages, navbar search UI, provider result lists, provider errors, and view models.
 
 ## Important behavior
 
 - `/Search/Demo` is the manual preview page.
-- `IDMBSearchProvider` implementations are the extension point for search sources.
-- `DMBSearchBuilderSearchProvider` reads generated site-search data.
-- `DMBDocumentationViewerSearchProvider` adds generated documentation results.
-- `DMBSearchCompositeAgent` aggregates provider results and provider errors.
+- `ISearchProvider` implementations are the extension point for search sources.
+- `SearchBuilderSearchProvider` reads generated site-search data.
+- `DocumentationViewerSearchProvider` adds generated documentation results.
+- `SearchCompositeAgent` aggregates provider results and provider errors.
 - Result URLs and snippets must remain safe to render.
 
 ## Maintenance posture

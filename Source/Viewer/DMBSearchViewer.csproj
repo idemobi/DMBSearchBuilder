@@ -101,11 +101,11 @@
         <EmbeddedResource Include="Views\**\*.cshtml"/>
     </ItemGroup>
     <ItemGroup Label="Localization">
-        <Compile Update="Resources\DMBSearchViewerDataAnnotationLocalization.cs">
-            <DependentUpon>DMBSearchViewerDataAnnotationLocalization.resx</DependentUpon>
+        <Compile Update="Resources\SearchViewerDataAnnotationLocalization.cs">
+            <DependentUpon>SearchViewerDataAnnotationLocalization.resx</DependentUpon>
         </Compile>
-        <Compile Update="Resources\DMBSearchViewerInternalLocalization.cs">
-            <DependentUpon>DMBSearchViewerInternalLocalization.resx</DependentUpon>
+        <Compile Update="Resources\SearchViewerInternalLocalization.cs">
+            <DependentUpon>SearchViewerInternalLocalization.resx</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup>

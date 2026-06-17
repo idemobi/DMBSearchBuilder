@@ -7,13 +7,13 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 - Project name: `DMBSearchCore`
 - Project folder: `DMBSearchBuilder/Source/Core`
 - Main role: shared search normalization and tokenization primitives.
-- Important files: `DMBSearchTextNormalizer.cs`, `DMBSearchCore.csproj`, and `README.md`.
+- Important files: `SearchTextNormalizer.cs`, `DMBSearchCore.csproj`, and `README.md`.
 - Documentation target: `labs_idemobi_com`
 
 ## Folder responsibilities
 
 - `Source/Core/`
-  - `DMBSearchTextNormalizer.cs`: shared normalization, token extraction, and compact technical-name comparison helpers.
+  - `SearchTextNormalizer.cs`: shared normalization, token extraction, and compact technical-name comparison helpers.
   - `DMBSearchCore.csproj`: package metadata, signing, and NuGet packaging settings.
   - `DMBSearchCore.png`: NuGet package icon.
   - `README.md`: package overview and usage context.

@@ -34,9 +34,9 @@ var mvcBuilder = builder.Services.AddControllersWithViews();
 mvcBuilder.AddApplicationPart(typeof(SearchBuilderController).Assembly);
 mvcBuilder.AddApplicationPart(typeof(SearchViewerController).Assembly);
 mvcBuilder.AddApplicationPart(typeof(SearchController).Assembly);
-mvcBuilder.AddMvcOptions(options => options.Filters.Add(new DMBSearchBuilderWebsiteSidebarActionFilter()));
+mvcBuilder.AddMvcOptions(options => options.Filters.Add(new SearchBuilderWebsiteSidebarActionFilter()));
 
-builder.Services.AddTransient<IMenuBarSectionProvider, DMBSearchBuilderWebsiteMenuBarSectionProvider>();
+builder.Services.AddTransient<IMenuBarSectionProvider, SearchBuilderWebsiteMenuBarSectionProvider>();
 builder.Services.AddTransient<IProfileBarSectionProvider, ThemeBarSectionProvider>();
 builder.Services.AddTransient<IProfileBarSectionProvider, DebugBarSectionProvider>();
 

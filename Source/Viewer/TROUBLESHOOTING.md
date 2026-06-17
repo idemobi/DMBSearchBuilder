@@ -11,7 +11,7 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 ## Search page returns no results
 
 1. Confirm the query text is not empty after trimming.
-2. Confirm at least one `IDMBSearchProvider` is registered.
+2. Confirm at least one `ISearchProvider` is registered.
 3. Check whether the SearchBuilder database exists at the configured path.
 4. Confirm documentation provider dependencies are available when documentation results are expected.
 5. Review provider errors returned in the search response.
@@ -32,7 +32,7 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 
 ## Result links are wrong
 
-1. Check `DMBSearchPathResolver`.
+1. Check `SearchPathResolver`.
 2. Confirm generated database URLs match the host path strategy.
 3. Verify documentation-provider URLs use the expected DocumentationViewer route.
 4. Treat user-provided or generated URLs as security-sensitive before rendering.

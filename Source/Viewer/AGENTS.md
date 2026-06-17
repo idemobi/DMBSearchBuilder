@@ -19,7 +19,7 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 ## Module intent
 
 - Provide a reusable search entry point for host websites.
-- Aggregate search results from `IDMBSearchProvider` implementations.
+- Aggregate search results from `ISearchProvider` implementations.
 - Display generated site-search records from `DMBSearchBuilder` and documentation records from `DMBDocumentationViewer` providers.
 - Keep search routes, provider contracts, view models, embedded views, navbar integration, and configuration stable for consumers.
 

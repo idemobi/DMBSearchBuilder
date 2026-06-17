@@ -19,7 +19,7 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 
 - Project name: `DMBSearchBuilder`
 - Primary API families: build options, launch profile options, website host crawling, page record storage, database manager, text normalization, keyword extraction, configuration, and prebuild agent orchestration.
-- Important types to reference when relevant: `DMBSearchBuilderAgent`, `DMBSearchBuildOptions`, `DMBSearchLaunchProfileBuildOptions`, `DMBSearchWebsiteHost`, `DMBSearchPageRecord`, `DMBSearchDatabaseManager`, `DMBSearchKeywordExtractor`, `DMBSearchTextNormalizer`, and `DMBSearchBuilderConfiguration`.
+- Important types to reference when relevant: `SearchBuilderAgent`, `SearchBuildOptions`, `SearchLaunchProfileBuildOptions`, `SearchWebsiteHost`, `SearchPageRecord`, `SearchDatabaseManager`, `SearchKeywordExtractor`, `SearchTextNormalizer`, and `DMBSearchBuilderConfiguration`.
 - Publication host: `labs_idemobi_com`
 - Documentation generation strategy: DocumentationBuilder-first; AI prepares content, the developer executes generation.
 
@@ -37,7 +37,7 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 For classes and interfaces, document:
 
 - the type's role in crawl orchestration, website access, page record storage, keyword extraction, normalization, or configuration,
-- the relationship with important types such as `DMBSearchBuilderAgent`, `DMBSearchBuildOptions`, `DMBSearchPageRecord`, and `DMBSearchDatabaseManager`,
+- the relationship with important types such as `SearchBuilderAgent`, `SearchBuildOptions`, `SearchPageRecord`, and `SearchDatabaseManager`,
 - lifecycle expectations, including whether the type is called by prebuild code, host configuration, or another package.
 
 For methods and constructors, document:
@@ -67,8 +67,8 @@ For properties, fields, and constants, document:
 
 Use `<example>` when it materially improves understanding of:
 
-- configuring `DMBSearchBuildOptions`,
-- running `DMBSearchBuilderAgent`,
+- configuring `SearchBuildOptions`,
+- running `SearchBuilderAgent`,
 - overriding excluded paths,
 - using custom database paths,
 - understanding generated page records.

@@ -18,7 +18,7 @@ string databasePath = Path.Combine(searchDirectory, "data.db");
 
 Directory.CreateDirectory(searchDirectory);
 
-DMBSearchLaunchProfileBuildOptions options = new()
+SearchLaunchProfileBuildOptions options = new()
 {
     ProjectPath = Path.Combine(websiteRoot, "DMBSearchBuilderWebsite.csproj"),
     LaunchSettingsPath = Path.Combine(websiteRoot, "Properties", "launchSettings.json"),
@@ -30,4 +30,4 @@ DMBSearchLaunchProfileBuildOptions options = new()
     UseNoBuild = false
 };
 
-await new DMBSearchBuilderAgent().BuildFromLaunchProfileAsync(options);
+await new SearchBuilderAgent().BuildFromLaunchProfileAsync(options);

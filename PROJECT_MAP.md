@@ -19,14 +19,14 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 
 - `Source/Builder/`
   - `DMBSearchBuilder.csproj`: package project file.
-  - `DMBSearchBuilderAgent.cs`: main orchestration entry point for building the search database.
-  - `DMBSearchBuildOptions.cs`: build-time options such as base URI, output path, limits, and excluded paths.
-  - `DMBSearchLaunchProfileBuildOptions.cs`: launch-profile-oriented build options.
-  - `DMBSearchWebsiteHost.cs`: website crawl host behavior.
-  - `DMBSearchPageRecord.cs`: generated page record model.
-  - `DMBSearchDatabaseManager.cs`: SQLite database creation and record persistence.
-  - `DMBSearchKeywordExtractor.cs`: keyword extraction behavior.
-  - `DMBSearchTextNormalizer.cs`: normalization behavior used before keyword extraction.
+  - `SearchBuilderAgent.cs`: main orchestration entry point for building the search database.
+  - `SearchBuildOptions.cs`: build-time options such as base URI, output path, limits, and excluded paths.
+  - `SearchLaunchProfileBuildOptions.cs`: launch-profile-oriented build options.
+  - `SearchWebsiteHost.cs`: website crawl host behavior.
+  - `SearchPageRecord.cs`: generated page record model.
+  - `SearchDatabaseManager.cs`: SQLite database creation and record persistence.
+  - `SearchKeywordExtractor.cs`: keyword extraction behavior.
+  - `SearchTextNormalizer.cs`: normalization behavior used before keyword extraction.
   - `README.md`, `LICENSE.md`, `DMBSearchBuilder.png`, and `DMBSearchBuilder.snk`: package metadata and signing assets.
 
 - `Source/Builder/Resources/`

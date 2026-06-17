@@ -11,7 +11,7 @@ When copying this file to another PageBuilder ecosystem project, update this sec
 
 ## ADR-001: Provider contracts are public extension points
 
-- Context: Host applications and packages can add search sources through `IDMBSearchProvider`.
+- Context: Host applications and packages can add search sources through `ISearchProvider`.
 - Decision: Keep provider inputs, outputs, and error behavior backward compatible unless breakage is explicitly approved.
 - Consequence: Provider contract changes must include documentation and migration notes.
 

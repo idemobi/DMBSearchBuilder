@@ -70,11 +70,11 @@
         <None Include="DMBSearchBuilder.png" Pack="true" PackagePath="\" />
     </ItemGroup>
     <ItemGroup Label="Localization">
-        <Compile Update="Resources\DMBSearchBuilderDataAnnotationLocalization.cs">
-            <DependentUpon>DMBSearchBuilderDataAnnotationLocalization.resx</DependentUpon>
+        <Compile Update="Resources\SearchBuilderDataAnnotationLocalization.cs">
+            <DependentUpon>SearchBuilderDataAnnotationLocalization.resx</DependentUpon>
         </Compile>
-        <Compile Update="Resources\DMBSearchBuilderInternalLocalization.cs">
-            <DependentUpon>DMBSearchBuilderInternalLocalization.resx</DependentUpon>
+        <Compile Update="Resources\SearchBuilderInternalLocalization.cs">
+            <DependentUpon>SearchBuilderInternalLocalization.resx</DependentUpon>
         </Compile>
     </ItemGroup>
     <ItemGroup Label="Project file exclusions">

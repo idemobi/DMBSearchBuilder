@@ -23,8 +23,8 @@ namespace DMBSearchViewer
     {
         #region Instance fields and properties
 
-        private readonly DMBSearchViewerOptions _options;
-        private readonly DMBSearchCompositeAgent _searchAgent;
+        private readonly SearchViewerOptions _options;
+        private readonly SearchCompositeAgent _searchAgent;
 
         #endregion
 
@@ -35,7 +35,7 @@ namespace DMBSearchViewer
         /// </summary>
         /// <param name="searchAgent">The search agent used to query registered providers.</param>
         /// <param name="options">The configured search viewer options.</param>
-        public SearchController(DMBSearchCompositeAgent searchAgent, IOptions<DMBSearchViewerOptions> options)
+        public SearchController(SearchCompositeAgent searchAgent, IOptions<SearchViewerOptions> options)
         {
             _searchAgent = searchAgent;
             _options = options.Value;
@@ -45,9 +45,9 @@ namespace DMBSearchViewer
 
         #region Instance methods
 
-        private void ApplyDisplayUrls(IEnumerable<DMBSearchResult> results)
+        private void ApplyDisplayUrls(IEnumerable<SearchResult> results)
         {
-            foreach (DMBSearchResult result in results)
+            foreach (SearchResult result in results)
             {
                 result.DisplayUrl = BuildDisplayUrl(result.Url);
             }
@@ -91,7 +91,7 @@ namespace DMBSearchViewer
             SetDescription("Manual preview states for the DMBSearchViewer search component.");
             SetKeywords("search", "demo", "preview");
 
-            DMBSearchPageViewModel model = new()
+            SearchPageViewModel model = new()
             {
                 Term = "navbar",
                 IsDemo = true
@@ -99,7 +99,7 @@ namespace DMBSearchViewer
 
             model.Results.AddRange(
             [
-                new DMBSearchResult
+                new SearchResult
                 {
                     SourceName = "DMBSearchBuilder",
                     Title = "BootstrapBuilder Navigation Bar",
@@ -107,7 +107,7 @@ namespace DMBSearchViewer
                     Excerpt = "Explains how navbar providers contribute menu and profile sections.",
                     Score = 100
                 },
-                new DMBSearchResult
+                new SearchResult
                 {
                     SourceName = "DMBDocumentationViewer",
                     Title = "BasicNavigationBarComposer (class)",
@@ -117,7 +117,7 @@ namespace DMBSearchViewer
                 }
             ]);
 
-            model.Errors.Add(new DMBSearchProviderError
+            model.Errors.Add(new SearchProviderError
             {
                 ProviderName = "DemoErrorProvider",
                 Message = "The provider could not return results."
@@ -144,14 +144,14 @@ namespace DMBSearchViewer
             SetDescription(WebLocalizer.GetInternal("VIEW_SEARCH_INDEX_DESCRIPTION").Value);
             SetKeywords(WebLocalizer.GetInternal("VIEW_SEARCH_INDEX_KEYWORDS").Value);
 
-            DMBSearchPageViewModel model = new()
+            SearchPageViewModel model = new()
             {
                 Term = normalizedTerm
             };
 
             if (!string.IsNullOrWhiteSpace(normalizedTerm))
             {
-                DMBSearchResponse response = await _searchAgent.SearchAsync(new DMBSearchQuery
+                SearchResponse response = await _searchAgent.SearchAsync(new SearchQuery
                 {
                     Term = normalizedTerm,
                     MaxResults = Math.Max(1, _options.MaxResultsPerProvider)

@@ -7,7 +7,7 @@ site and documentation indexes.
 
 ## Explanation
 
-Search results are collected through `IDMBSearchProvider` implementations. The first providers
+Search results are collected through `ISearchProvider` implementations. The first providers
 cover the generated DMBSearchBuilder database and the DMBDocumentationViewer database.
 
 ## Example
